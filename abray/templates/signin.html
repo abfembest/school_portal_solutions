@@ -1,59 +1,62 @@
-{% extends "headerfooterlinks.html" %}
+{% extends 'formbase.html' %}
+
 {% load static %}
-{%block content%}
 
+{% block title %} Login | AbrayTech {% endblock %}
 
-<main class="main">
+{% block content %}
 
-    <!-- Login Section -->
-    <section id="login" class="contact section">
+<!-- Login Section -->
+<section id="login" class="contact section">
 
-        <div class="container section-title" data-aos="fade-up">
-            <h2>Login</h2>
-            <p>Access your account to manage your services</p>
-        </div>
+    <div class="container text-center" data-aos="fade-up">
+        <h2 class="h1 text-uppercase mt-3"> <strong>Login</strong> </h2>
+        <hr style="width: 20%; display: block; margin: 0 auto;">
+        <p class="h6 my-5">Access your account to manage your services</p>
+    </div>
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="row gy-4">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-4">
 
-                <!-- Login Form -->
-                <div class="col-lg-7" style="min-height: 500px;">
-                    <form method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
-                        {% csrf_token %}
-                        <div class="row gy-5" style="padding-top: 50px;">
+            <!-- Login Form -->
+            <div class="col-lg-7" style="min-height: 500px;">
+                <form method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="200">
+                    {% csrf_token %}
+                    <div class="row gy-5" style="padding-top: 50px;">
 
-                            <div class="col-md-12">
-                                <label for="email" class="pb-2">Email Address</label>
-                                <input type="email" class="form-control" name="email" id="email" required>
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="password" class="pb-2">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" required>
-                            </div>
-
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="w-100 bg-primary">Sign In</button>
-                            </div>
-
-                            <div class="col-md-12 text-center pt-2">
-                                <p>Don't have an account? <a href="{% url 'register' %}" class="text-dark"><strong>Create one here</strong></a></p>
-                            </div>
-
+                        <div class="col-md-12">
+                            <label for="email" class="pb-2">Email Address</label>
+                            <input type="email" class="form-control" name="email" id="email" required>
                         </div>
-                    </form>
-                </div><!-- End Login Form -->
-                <!-- Image Column -->
-                <div class="col-lg-5" style="min-height: 500px; border-radius: 10px; overflow: hidden;">
-                    <img src="{% static 'assets/img/signin.jpg' %}"
-                         style="object-fit: cover; object-position: center; filter: blur(1px); width: 100%; height: 100%;"
-                         alt="Login Image">
-                </div>
 
+                        <div class="col-md-12">
+                            <label for="password" class="pb-2">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" required>
+                        </div>
+
+                        <div class="col-md-12 text-center">
+                            <button type="submit" class="w-100 bg-primary">Sign In</button>
+                        </div>
+
+                        <div class="col-md-12 text-center pt-2">
+                            <p>Don't have an account? <a href="{% url 'register' %}" class="text-dark"><strong>Create
+                                        one here</strong></a></p>
+                        </div>
+
+                    </div>
+                </form>
+            </div><!-- End Login Form -->
+            <!-- Image Column -->
+            <div class="col-lg-5" style="min-height: 500px; border-radius: 10px; overflow: hidden;">
+                <img src="{% static 'assets/img/signin.jpg' %}"
+                    style="object-fit: cover; object-position: center; filter: blur(1px); width: 100%; height: 100%;"
+                    alt="Login Image">
             </div>
+
         </div>
+    </div>
 
-    </section><!-- /Login Section -->
-
-</main>
+</section>
+<!-- /Login Section -->
+ 
 {% endblock %}

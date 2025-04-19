@@ -44,6 +44,7 @@
         <!-- Course Cards Swiper -->
         <div class="swiper coursesSwiper">
             <div class="swiper-wrapper pb-5">
+
                 <!-- AI Course Card -->
                 <div class="swiper-slide">
                     <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
@@ -423,12 +424,53 @@
             </div>
 
             <!-- Swiper Navigation -->
-            <!-- <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div> -->
             <div class="swiper-pagination"></div>
         </div>
 
     </div>
-</section><!-- End Courses Section -->
+</section>
+<!-- End Courses Section -->
 
-{% endblock%}
+<!-- Initialize Swiper -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Swiper(".coursesSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: "ease-in-out",
+            once: true,
+            mirror: false
+        });
+    });
+</script>
+
+{% endblock %}
