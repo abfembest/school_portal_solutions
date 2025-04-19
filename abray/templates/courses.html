@@ -1,418 +1,434 @@
 {% extends "headerfooterlinks.html" %}
 {% load static %}
+
 {%block content%}
-
-
-<main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section">
-        <div class="container">
-            <div class="row gy-4 align-items-center">
-                <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center py-5 py-lg-0"
-                     data-aos="zoom-out">
-                    <h1 class="text-center text-lg-start mb-4">Top Trending Courses for 2025</h1>
-                    <p class="text-center text-lg-start mb-4">
-                        Stay ahead of the curve with our cutting-edge courses
-                        designed to meet the demands of the
-                        future.
-                    </p>
-                    <div class="d-flex justify-content-center justify-content-lg-start">
-                        <a href="#courses" class="btn-get-started">Explore Courses</a>
-                    </div>
+<!-- Hero Section -->
+<section id="hero" class="hero section">
+    <div class="container">
+        <div class="row gy-4 align-items-center">
+            <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center py-5 py-lg-0"
+                data-aos="zoom-out">
+                <h1 class="text-center text-lg-start mb-4">Top Trending Courses for 2025</h1>
+                <p class="text-center text-lg-start mb-4">
+                    Stay ahead of the curve with our cutting-edge courses
+                    designed to meet the demands of the
+                    future.
+                </p>
+                <div class="d-flex justify-content-center justify-content-lg-start">
+                    <a href="#courses" class="btn-get-started">Explore Courses</a>
                 </div>
-                <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justify-content-center" data-aos="zoom-out"
-                     data-aos-delay="200">
-                    <img src="{% static 'assets/img/hero-img.jpg' %}"
-                         class="img-fluid animated rounded-circle w-75 w-md-100" alt="">
-                </div>
+            </div>
+            <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justify-content-center" data-aos="zoom-out"
+                data-aos-delay="200">
+                <img src="{% static 'assets/img/hero-img.jpg' %}"
+                    class="img-fluid animated rounded-circle w-75 w-md-100" alt="">
             </div>
         </div>
-    </section><!-- /Hero Section -->
-    <!-- Courses Section -->
-    <section id="courses" class="courses section-bg py-5">
-        <div class="container" data-aos="fade-up">
+    </div>
+</section>
+<!-- /Hero Section -->
 
-            <div class="section-title text-center mb-5" data-aos="fade-up">
-                <h2 class="position-relative pb-3 mb-4">
-                    <span class="position-relative z-1">Top Trending Courses</span>
-                    <span class="position-absolute start-50 translate-middle-x bottom-0 bg-primary"
-                          style="height: 3px; width: 80px;"></span>
-                </h2>
-                <p class="text-muted px-3 px-md-0">Expand your tech skills with our industry-leading programs</p>
-            </div>
+<!-- Courses Section -->
+<section id="courses" class="courses section-bg py-5">
+    <div class="container" data-aos="fade-up">
 
-            <!-- Course Cards Swiper -->
-            <div class="swiper coursesSwiper">
-                <div class="swiper-wrapper pb-5">
-                    <!-- AI Course Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995"
-                                     class="card-img-top" alt="Artificial Intelligence"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute top-0 end-0 p-3">
-                                    <span class="badge bg-danger animate__animated animate__pulse animate__infinite">Popular</span>
-                                </div>
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>8 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>12 modules</small>
-                                </div>
+        <div class="section-title text-center mb-5" data-aos="fade-up">
+            <h2 class="position-relative pb-3 mb-4">
+                <span class="position-relative z-1">Top Trending Courses</span>
+                <span class="position-absolute start-50 translate-middle-x bottom-0 bg-primary"
+                    style="height: 3px; width: 80px;"></span>
+            </h2>
+            <p class="text-muted px-3 px-md-0">Expand your tech skills with our industry-leading programs</p>
+        </div>
+
+        <!-- Course Cards Swiper -->
+        <div class="swiper coursesSwiper">
+            <div class="swiper-wrapper pb-5">
+                <!-- AI Course Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" class="card-img-top"
+                                alt="Artificial Intelligence" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 p-3">
+                                <span
+                                    class="badge bg-danger animate__animated animate__pulse animate__infinite">Popular</span>
                             </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-brain text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">
-                                        Artificial
-                                        Intelligence
-                                    </a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-half text-warning"></i>
-                                    <small class="ms-2 text-muted">(4.5)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Learn the fundamentals of AI and machine learning to
-                                    build
-                                    intelligent systems.
-                                </p>
-                            </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$199.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>8 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>12 modules</small>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Cyber Security Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7"
-                                     class="card-img-top" alt="Cyber Security"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute top-0 end-0 p-3">
-                                    <span class="badge bg-success animate__animated animate__pulse animate__infinite">New</span>
-                                </div>
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>10 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>15 modules</small>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-brain text-primary display-6"></i>
                                 </div>
                             </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-shield-quarter text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">Cyber Security</a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <small class="ms-2 text-muted">(4.0)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Protect digital systems from cyber threats with advanced
-                                    security techniques.
-                                </p>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html" class="stretched-link text-decoration-none text-dark">
+                                    Artificial
+                                    Intelligence
+                                </a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-half text-warning"></i>
+                                <small class="ms-2 text-muted">(4.5)</small>
                             </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$249.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
-                            </div>
+                            <p class="card-text small">
+                                Learn the fundamentals of AI and machine learning to
+                                build
+                                intelligent systems.
+                            </p>
                         </div>
-                    </div>
-
-                    <!-- Data Science Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71"
-                                     class="card-img-top" alt="Data Science"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>12 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>18 modules</small>
-                                </div>
-                            </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-bar-chart-alt-2 text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">Data Science</a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <small class="ms-2 text-muted">(5.0)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Extract insights from data using statistical analysis and
-                                    machine learning.
-                                </p>
-                            </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$229.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Cloud Computing Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9"
-                                     class="card-img-top" alt="Cloud Computing"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>8 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>10 modules</small>
-                                </div>
-                            </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-cloud text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">Cloud Computing</a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-half text-warning"></i>
-                                    <small class="ms-2 text-muted">(4.5)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Deploy and manage applications and services on cloud
-                                    platforms.
-                                </p>
-                            </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$179.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Quantum Computing Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb"
-                                     class="card-img-top" alt="Quantum Computing"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute top-0 end-0 p-3">
-                                    <span class="badge bg-warning animate__animated animate__pulse animate__infinite">Advanced</span>
-                                </div>
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>14 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>20 modules</small>
-                                </div>
-                            </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-atom text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">Quantum Computing</a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-half text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <small class="ms-2 text-muted">(3.5)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Explore the basics of quantum computing and its potential
-                                    applications.
-                                </p>
-                            </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$299.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Blockchain Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a"
-                                     class="card-img-top" alt="Blockchain Technology"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>10 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>15 modules</small>
-                                </div>
-                            </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-cube-alt text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">
-                                        Blockchain
-                                        Technology
-                                    </a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <small class="ms-2 text-muted">(4.0)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Understand the principles and applications of blockchain
-                                    in
-                                    various industries.
-                                </p>
-                            </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$259.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- IoT Card -->
-                    <div class="swiper-slide">
-                        <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
-                            <div class="position-relative course-img-container">
-                                <img src="https://as1.ftcdn.net/v2/jpg/12/99/53/36/1000_F_1299533650_RTF3Gnfx5IJqZYMXNQEOnJj7WKy542RI.jpg"
-                                     class="card-img-top" alt="Internet of Things"
-                                     style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
-                                    <small><i class="bx bx-time-five me-1"></i>9 weeks</small>
-                                    <span class="mx-2">|</span>
-                                    <small><i class="bx bx-book me-1"></i>14 modules</small>
-                                </div>
-                            </div>
-                            <div class="card-body text-center p-4">
-                                <div class="icon-box mb-3">
-                                    <div class="icon">
-                                        <i class="bx bx-chip text-primary display-6"></i>
-                                    </div>
-                                </div>
-                                <h5 class="card-title fw-bold">
-                                    <a href="course-details.html"
-                                       class="stretched-link text-decoration-none text-dark">
-                                        Internet of Things
-                                        (IoT)
-                                    </a>
-                                </h5>
-                                <div class="rating mb-3">
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-fill text-warning"></i>
-                                    <i class="bi bi-star-half text-warning"></i>
-                                    <small class="ms-2 text-muted">(4.5)</small>
-                                </div>
-                                <p class="card-text small">
-                                    Learn to connect devices and systems to create smart
-                                    environments.
-                                </p>
-                            </div>
-                            <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
-                                <div class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                    <span class="fw-bold text-primary">$189.99</span>
-                                    <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
-                                       data-aos="fade-up">
-                                        <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span class="d-none d-sm-inline">Join Course</span><span class="d-inline d-sm-none">Join</span>
-                                    </a>
-                                </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$199.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Swiper Navigation -->
-                <!-- <div class="swiper-button-next"></div>
+                <!-- Cyber Security Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7" class="card-img-top"
+                                alt="Cyber Security" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 p-3">
+                                <span
+                                    class="badge bg-success animate__animated animate__pulse animate__infinite">New</span>
+                            </div>
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>10 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>15 modules</small>
+                            </div>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-shield-quarter text-primary display-6"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html"
+                                    class="stretched-link text-decoration-none text-dark">Cyber Security</a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <small class="ms-2 text-muted">(4.0)</small>
+                            </div>
+                            <p class="card-text small">
+                                Protect digital systems from cyber threats with advanced
+                                security techniques.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$249.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Data Science Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71" class="card-img-top"
+                                alt="Data Science" style="height: 200px; object-fit: cover;">
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>12 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>18 modules</small>
+                            </div>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-bar-chart-alt-2 text-primary display-6"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html" class="stretched-link text-decoration-none text-dark">Data
+                                    Science</a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <small class="ms-2 text-muted">(5.0)</small>
+                            </div>
+                            <p class="card-text small">
+                                Extract insights from data using statistical analysis and
+                                machine learning.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$229.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cloud Computing Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9" class="card-img-top"
+                                alt="Cloud Computing" style="height: 200px; object-fit: cover;">
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>8 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>10 modules</small>
+                            </div>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-cloud text-primary display-6"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html"
+                                    class="stretched-link text-decoration-none text-dark">Cloud Computing</a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-half text-warning"></i>
+                                <small class="ms-2 text-muted">(4.5)</small>
+                            </div>
+                            <p class="card-text small">
+                                Deploy and manage applications and services on cloud
+                                platforms.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$179.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quantum Computing Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb" class="card-img-top"
+                                alt="Quantum Computing" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 p-3">
+                                <span
+                                    class="badge bg-warning animate__animated animate__pulse animate__infinite">Advanced</span>
+                            </div>
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>14 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>20 modules</small>
+                            </div>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-atom text-primary display-6"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html"
+                                    class="stretched-link text-decoration-none text-dark">Quantum Computing</a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-half text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <small class="ms-2 text-muted">(3.5)</small>
+                            </div>
+                            <p class="card-text small">
+                                Explore the basics of quantum computing and its potential
+                                applications.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$299.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Blockchain Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://images.unsplash.com/photo-1639322537228-f710d846310a" class="card-img-top"
+                                alt="Blockchain Technology" style="height: 200px; object-fit: cover;">
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>10 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>15 modules</small>
+                            </div>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-cube-alt text-primary display-6"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html" class="stretched-link text-decoration-none text-dark">
+                                    Blockchain
+                                    Technology
+                                </a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star text-warning"></i>
+                                <small class="ms-2 text-muted">(4.0)</small>
+                            </div>
+                            <p class="card-text small">
+                                Understand the principles and applications of blockchain
+                                in
+                                various industries.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$259.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- IoT Card -->
+                <div class="swiper-slide">
+                    <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
+                        <div class="position-relative course-img-container">
+                            <img src="https://as1.ftcdn.net/v2/jpg/12/99/53/36/1000_F_1299533650_RTF3Gnfx5IJqZYMXNQEOnJj7WKy542RI.jpg"
+                                class="card-img-top" alt="Internet of Things" style="height: 200px; object-fit: cover;">
+                            <div
+                                class="position-absolute start-0 bottom-0 w-100 bg-dark bg-opacity-75 text-white p-2 text-center">
+                                <small><i class="bx bx-time-five me-1"></i>9 weeks</small>
+                                <span class="mx-2">|</span>
+                                <small><i class="bx bx-book me-1"></i>14 modules</small>
+                            </div>
+                        </div>
+                        <div class="card-body text-center p-4">
+                            <div class="icon-box mb-3">
+                                <div class="icon">
+                                    <i class="bx bx-chip text-primary display-6"></i>
+                                </div>
+                            </div>
+                            <h5 class="card-title fw-bold">
+                                <a href="course-details.html" class="stretched-link text-decoration-none text-dark">
+                                    Internet of Things
+                                    (IoT)
+                                </a>
+                            </h5>
+                            <div class="rating mb-3">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <i class="bi bi-star-half text-warning"></i>
+                                <small class="ms-2 text-muted">(4.5)</small>
+                            </div>
+                            <p class="card-text small">
+                                Learn to connect devices and systems to create smart
+                                environments.
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                            <div
+                                class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
+                                <span class="fw-bold text-primary">$189.99</span>
+                                <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                    data-aos="fade-up">
+                                    <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                        class="d-none d-sm-inline">Join Course</span><span
+                                        class="d-inline d-sm-none">Join</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Swiper Navigation -->
+            <!-- <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div> -->
-                <div class="swiper-pagination"></div>
-            </div>
-
+            <div class="swiper-pagination"></div>
         </div>
-    </section><!-- End Courses Section -->
 
-</main>
+    </div>
+</section><!-- End Courses Section -->
 
-    {% endblock%}
-</body>
-
+{% endblock%}
