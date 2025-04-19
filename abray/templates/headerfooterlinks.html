@@ -1,0 +1,238 @@
+{%load static%}
+<head><!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Courses - Arsha Bootstrap Template</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/animate.css/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+    <!-- Main CSS File -->
+    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/style1.css' %}" rel="stylesheet">
+</head>
+
+
+<!-- Body and menu started-->
+<body class="courses-page">
+
+    <header id="header" class="header d-flex align-items-center fixed-top">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
+
+            <a href="index.html" class="logo d-flex align-items-center me-auto">
+                <h1 class="sitename">Abraytech</h1>
+            </a>
+
+            <nav id="navmenu" class="navmenu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="{% url 'course' %}">Tech skills</a></li>
+                    <li class="dropdown">
+                        <a href="#"><span>Academics</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                        <ul>
+                            <li><a href="#departments">Departments</a></li>
+                            <li><a href="#curriculum">Curriculum</a></li>
+                            <li><a href="#teachers">Teachers</a></li>
+                            <li><a href="#students">Students</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+            </nav>
+
+            <a class="btn-getstarted d-none d-md-inline-block" href="{% url 'register' %}">Get Started</a>
+        </div>
+    </header>
+
+ {% block content %}
+ 
+ {% endblock %}
+<!-- Initialize Swiper -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Swiper(".coursesSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+            },
+        });
+
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: "ease-in-out",
+            once: true,
+            mirror: false
+        });
+    });
+</script>
+
+ <footer id="footer" class="footer">
+     <!-- Newsletter Section -->
+     <div class="footer-newsletter">
+         <div class="container">
+             <div class="row justify-content-center text-center">
+                 <div class="col-lg-6">
+                     <h4>Join Our Newsletter</h4>
+                     <p>Stay updated with the latest trends and courses!</p>
+                     <form action="forms/newsletter.php" method="post" class="php-email-form">
+                         <div class="newsletter-form">
+                             <input type="email" name="email" placeholder="Enter your email">
+                             <input type="submit" value="Subscribe">
+                         </div>
+                         <div class="loading">Loading...</div>
+                         <div class="error-message"></div>
+                         <div class="sent-message">Your subscription request has been sent. Thank you!</div>
+                     </form>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- End Newsletter Section -->
+     <!-- Map Section -->
+     <div class="map-section">
+         <iframe style="border:0; width: 100%; height: 400px;"
+                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31624.343123103754!2d4.5293167961724565!3d7.785277561167428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103787e985029d8d%3A0x4c6c680f23c89ce2!2sNew%20orisunbare%20shopping%20complex!5e0!3m2!1sen!2sng!4v1641426080502!5m2!1sen!2sng"
+                 frameborder="0" allowfullscreen></iframe>
+     </div><!-- End Map Section -->
+     <!-- Footer Top Section -->
+     <div class="container footer-top">
+         <div class="row gy-4">
+             <div class="col-lg-4 col-md-6 footer-about">
+                 <a href="index.html" class="d-flex align-items-center">
+                     <span class="sitename">Abraytech</span>
+                 </a>
+                 <div class="footer-contact pt-3">
+                     <h3>Contact Information</h3>
+                     <p>
+                         Abraytech Office<br>
+                         123 Tech Lane<br>
+                         City, State<br><br>
+                         <strong>Phone:</strong> +1 5589 55488 55<br>
+                         <strong>Email:</strong> info@abraytech.com<br>
+                     </p>
+                 </div>
+             </div>
+
+             <div class="col-lg-2 col-md-3 footer-links">
+                 <h4>Quick Links</h4>
+                 <ul>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#about">About Us</a></li>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#courses">Courses</a></li>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#admissions">Admissions</a></li>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#events">Events</a></li>
+                 </ul>
+             </div>
+
+             <div class="col-lg-2 col-md-3 footer-links">
+                 <h4>Our Services</h4>
+                 <ul>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#teachers">Teacher Portal</a></li>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#students">Student Portal</a></li>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#curriculum">Curriculum</a></li>
+                     <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact Us</a></li>
+                 </ul>
+             </div>
+
+             <div class="col-lg-4 col-md-12">
+                 <h4>Follow Us</h4>
+                 <p>Stay connected with us on social media for updates and news.</p>
+                 <div class="social-links d-flex">
+                     <a href=""><i class="bi bi-twitter"></i></a>
+                     <a href=""><i class="bi bi-facebook"></i></a>
+                     <a href=""><i class="bi bi-instagram"></i></a>
+                     <a href=""><i class="bi bi-linkedin"></i></a>
+                 </div>
+             </div>
+
+         </div>
+     </div>
+     <!-- End Footer Top Section -->
+     <!-- Copyright Section -->
+     <div class="container copyright text-center mt-0">
+         <p>
+             &copy;<span>Copyright</span> <strong class="px-1 sitename">Abraytech</strong> <span>
+                 All Rights
+                 Reserved
+             </span>
+         </p>
+         <div class="credits">
+             Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+         </div>
+     </div>
+
+ </footer>
+
+ <!-- Scroll Top -->
+ <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
+     <i class="bi bi-arrow-up-short"></i>
+ </a>
+
+ <!-- Preloader -->
+ {% comment %} <div id="preloader"></div> {% endcomment %}
+
+ <!-- Vendor JS Files -->
+ <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+ <script src="{% static 'assets/vendor/php-email-form/validate.js' %}"></script>
+ <script src="{% static 'assets/vendor/aos/aos.js' %}"></script>
+ <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+ <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+ <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
+ <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
+ <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+
+ <!-- Main JS File -->
+ <script src="{% static 'assets/js/main.js' %}"></script>
+
+</html>
