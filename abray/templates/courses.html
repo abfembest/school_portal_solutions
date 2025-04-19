@@ -43,7 +43,7 @@
 <body class="courses-page">
 
     <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center">
+        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
             <a href="index.html" class="logo d-flex align-items-center me-auto">
                 <h1 class="sitename">Abraytech</h1>
@@ -69,7 +69,7 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="{% url 'register' %}">Get Started</a>
+            <a class="btn-getstarted d-none d-md-inline-block" href="{% url 'register' %}">Get Started</a>
         </div>
     </header>
 
@@ -78,19 +78,21 @@
         <!-- Hero Section -->
         <section id="hero" class="hero section">
             <div class="container">
-                <div class="row gy-4">
-                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center"
+                <div class="row gy-4 align-items-center">
+                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center py-5 py-lg-0"
                         data-aos="zoom-out">
-                        <h1>Top Trending Courses for 2025</h1>
-                        <p>Stay ahead of the curve with our cutting-edge courses designed to meet the demands of the
+                        <h1 class="text-center text-lg-start mb-4">Top Trending Courses for 2025</h1>
+                        <p class="text-center text-lg-start mb-4">Stay ahead of the curve with our cutting-edge courses
+                            designed to meet the demands of the
                             future.</p>
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-center justify-content-lg-start">
                             <a href="#courses" class="btn-get-started">Explore Courses</a>
                         </div>
                     </div>
-                    <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-out" data-aos-delay="200">
-                        <img src="{% static 'assets/img/hero-img.jpg' %}" class="img-fluid animated rounded-circle"
-                            alt="">
+                    <div class="col-lg-6 order-1 order-lg-2 hero-img d-flex justify-content-center" data-aos="zoom-out"
+                        data-aos-delay="200">
+                        <img src="{% static 'assets/img/hero-img.jpg' %}"
+                            class="img-fluid animated rounded-circle w-75 w-md-100" alt="">
                     </div>
                 </div>
             </div>
@@ -106,7 +108,7 @@
                         <span class="position-absolute start-50 translate-middle-x bottom-0 bg-primary"
                             style="height: 3px; width: 80px;"></span>
                     </h2>
-                    <p class="text-muted">Expand your tech skills with our industry-leading programs</p>
+                    <p class="text-muted px-3 px-md-0">Expand your tech skills with our industry-leading programs</p>
                 </div>
 
                 <!-- Course Cards Swiper -->
@@ -148,15 +150,19 @@
                                         <i class="bi bi-star-half text-warning"></i>
                                         <small class="ms-2 text-muted">(4.5)</small>
                                     </div>
-                                    <p class="card-text">Learn the fundamentals of AI and machine learning to build
+                                    <p class="card-text small">Learn the fundamentals of AI and machine learning to
+                                        build
                                         intelligent systems.</p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$199.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -199,15 +205,18 @@
                                         <i class="bi bi-star text-warning"></i>
                                         <small class="ms-2 text-muted">(4.0)</small>
                                     </div>
-                                    <p class="card-text">Protect digital systems from cyber threats with advanced
+                                    <p class="card-text small">Protect digital systems from cyber threats with advanced
                                         security techniques.</p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$249.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -245,15 +254,18 @@
                                         <i class="bi bi-star-fill text-warning"></i>
                                         <small class="ms-2 text-muted">(5.0)</small>
                                     </div>
-                                    <p class="card-text">Extract insights from data using statistical analysis and
+                                    <p class="card-text small">Extract insights from data using statistical analysis and
                                         machine learning.</p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$229.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -292,15 +304,19 @@
                                         <i class="bi bi-star-half text-warning"></i>
                                         <small class="ms-2 text-muted">(4.5)</small>
                                     </div>
-                                    <p class="card-text">Deploy and manage applications and services on cloud platforms.
+                                    <p class="card-text small">Deploy and manage applications and services on cloud
+                                        platforms.
                                     </p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$179.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -343,15 +359,18 @@
                                         <i class="bi bi-star text-warning"></i>
                                         <small class="ms-2 text-muted">(3.5)</small>
                                     </div>
-                                    <p class="card-text">Explore the basics of quantum computing and its potential
+                                    <p class="card-text small">Explore the basics of quantum computing and its potential
                                         applications.</p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$299.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -390,15 +409,19 @@
                                         <i class="bi bi-star text-warning"></i>
                                         <small class="ms-2 text-muted">(4.0)</small>
                                     </div>
-                                    <p class="card-text">Understand the principles and applications of blockchain in
+                                    <p class="card-text small">Understand the principles and applications of blockchain
+                                        in
                                         various industries.</p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$259.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -437,15 +460,18 @@
                                         <i class="bi bi-star-half text-warning"></i>
                                         <small class="ms-2 text-muted">(4.5)</small>
                                     </div>
-                                    <p class="card-text">Learn to connect devices and systems to create smart
+                                    <p class="card-text small">Learn to connect devices and systems to create smart
                                         environments.</p>
                                 </div>
-                                <div class="card-footer bg-transparent border-top-0 text-center p-4">
-                                    <div class="d-flex justify-content-between align-items-center">
+                                <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
+                                    <div
+                                        class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
                                         <span class="fw-bold text-primary">$189.99</span>
-                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-4"
+                                        <a href="course-details.html" class="btn btn-primary rounded-pill px-3 px-md-4"
                                             data-aos="fade-up">
-                                            <i class="bi bi-person-plus-fill me-2"></i>Join Course
+                                            <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
+                                                class="d-none d-sm-inline">Join Course</span><span
+                                                class="d-inline d-sm-none">Join</span>
                                         </a>
                                     </div>
                                 </div>
@@ -454,8 +480,8 @@
                     </div>
 
                     <!-- Swiper Navigation -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+                    <!-- <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div> -->
                     <div class="swiper-pagination"></div>
                 </div>
 
@@ -467,7 +493,7 @@
             document.addEventListener('DOMContentLoaded', function () {
                 new Swiper(".coursesSwiper", {
                     slidesPerView: 1,
-                    spaceBetween: 30,
+                    spaceBetween: 20,
                     loop: true,
                     pagination: {
                         el: ".swiper-pagination",
