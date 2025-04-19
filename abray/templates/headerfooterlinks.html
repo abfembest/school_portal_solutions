@@ -76,42 +76,40 @@
         </div>
     </header>
 
-    <main class="main">
-        {% block content %}
-
-        {% endblock %}
-    </main>
-    <!-- Initialize Swiper -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            new Swiper(".coursesSwiper", {
-                slidesPerView: 1,
-                spaceBetween: 20,
-                loop: true,
-                pagination: {
-                    el: ".swiper-pagination",
-                    clickable: true,
+ {% block content %}
+ 
+ {% endblock %}
+<!-- Initialize Swiper -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Swiper(".coursesSwiper", {
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
                 },
-                navigation: {
-                    nextEl: ".swiper-button-next",
-                    prevEl: ".swiper-button-prev",
+                768: {
+                    slidesPerView: 2,
                 },
-                autoplay: {
-                    delay: 5000,
-                    disableOnInteraction: false,
+                1024: {
+                    slidesPerView: 3,
                 },
-                breakpoints: {
-                    640: {
-                        slidesPerView: 1,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                    },
-                    1024: {
-                        slidesPerView: 3,
-                    },
-                },
-            });
+            },
+        });
 
             // Initialize AOS
             AOS.init({
