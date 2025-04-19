@@ -27,11 +27,11 @@
     <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/animate.css/animate.min.css'%}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="{% static 'assets/vendor/aos/aos.css" rel="stylesheet' %}">
+    <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}'" rel="stylesheet">
     <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}'" rel="stylesheet">
 
@@ -61,7 +61,7 @@
 
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="#hero" class="active">Home</a></li>
+                    <li><a href="{% url 'home' %}" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#admissions">Admissions</a></li>
                     <li class="dropdown">
@@ -79,7 +79,7 @@
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
 
-            <a class="btn-getstarted" href="#admissions">Get Started</a>
+            <a class="btn-getstarted" href="{% url 'register' %}">Get Started</a>
 
 
         </div>
@@ -178,6 +178,7 @@
 
             </div>
         </section><!-- End About Us Section -->
+
         <!-- ======= Services Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
@@ -394,6 +395,7 @@
 
             </div>
         </section><!-- End Services Section -->
+
         <!-- ======= Portfolio Section ======= -->
         <!--<section id="portfolio" class="portfolio">
       <div class="container">
@@ -1492,6 +1494,7 @@
             </div>
 
         </section><!-- /Faq 2 Section -->
+        
         <!-- Contact Section -->
         <section id="contact" class="contact section">
 
