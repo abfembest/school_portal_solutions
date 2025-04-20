@@ -1,0 +1,918 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% load static %}
+
+{% block title %} Course Detail | AbrayTech {% endblock %}
+
+{% block content %}
+
+<!-- Breadcrumbs Section - Fixed with proper spacing -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="courses.html">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Artificial Intelligence</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs Section -->
+
+<!-- Course Detail Section -->
+<section id="course-detail" class="course-detail py-5">
+    <div class="container" data-aos="fade-up">
+        <div class="row g-5">
+            <!-- Course Content Column -->
+            <div class="col-lg-8">
+                <div class="course-header mb-4">
+                    <div class="position-relative course-img-container mb-4">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995"
+                            class="img-fluid rounded-4 w-100" alt="Artificial Intelligence"
+                            style="height: 400px; object-fit: cover;">
+                        <div class="position-absolute top-0 end-0 p-3">
+                            <span
+                                class="badge bg-danger animate__animated animate__pulse animate__infinite">Popular</span>
+                        </div>
+                    </div>
+
+                    <h1 class="course-title fw-bold mb-3">Artificial Intelligence</h1>
+
+                    <div class="course-meta d-flex flex-wrap gap-4 mb-4">
+                        <div class="me-4">
+                            <i class="bi bi-person text-primary me-2"></i>
+                            <span>Instructor: Dr. Alan Turing</span>
+                        </div>
+                        <div class="me-4">
+                            <i class="bi bi-clock text-primary me-2"></i>
+                            <span>Duration: 8 weeks</span>
+                        </div>
+                        <div class="me-4">
+                            <i class="bi bi-book text-primary me-2"></i>
+                            <span>12 modules</span>
+                        </div>
+                        <div class="me-4">
+                            <i class="bi bi-mortarboard text-primary me-2"></i>
+                            <span>Level: Intermediate</span>
+                        </div>
+                    </div>
+
+                    <div class="rating mb-4">
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-fill text-warning"></i>
+                        <i class="bi bi-star-half text-warning"></i>
+                        <span class="ms-2 fw-semibold">4.5</span>
+                        <span class="text-muted">(247 reviews)</span>
+                    </div>
+                </div>
+
+                <!-- Course Tabs -->
+                <div class="course-tabs">
+                    <ul class="nav nav-tabs" id="courseTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="overview-tab" data-bs-toggle="tab"
+                                data-bs-target="#overview" type="button" role="tab" aria-controls="overview"
+                                aria-selected="true">Overview</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="curriculum-tab" data-bs-toggle="tab"
+                                data-bs-target="#curriculum" type="button" role="tab" aria-controls="curriculum"
+                                aria-selected="false">Curriculum</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="instructor-tab" data-bs-toggle="tab"
+                                data-bs-target="#instructor" type="button" role="tab" aria-controls="instructor"
+                                aria-selected="false">Instructor</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews"
+                                type="button" role="tab" aria-controls="reviews" aria-selected="false">Reviews</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content p-4 bg-white shadow-sm rounded-bottom-4" id="courseTabContent">
+                        <!-- Overview Tab -->
+                        <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                            aria-labelledby="overview-tab">
+                            <h3 class="mb-4">Course Description</h3>
+                            <p>Artificial Intelligence is transforming our world in remarkable ways. This
+                                comprehensive course offers an in-depth exploration of AI concepts,
+                                methodologies, and practical applications that are shaping industries today.</p>
+
+                            <p>You'll learn the fundamentals of machine learning, neural networks, and deep
+                                learning while gaining hands-on experience with real-world AI projects. By the
+                                end of this course, you'll have the knowledge and skills to build intelligent
+                                systems that can analyze data, recognize patterns, and make decisions.</p>
+
+                            <div class="mt-5">
+                                <h4 class="mb-3">What You'll Learn</h4>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Machine
+                                                learning fundamentals</li>
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Neural
+                                                network architecture</li>
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Deep
+                                                learning models</li>
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Computer
+                                                vision techniques</li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <ul class="list-unstyled">
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Natural
+                                                language processing</li>
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Reinforcement
+                                                learning</li>
+                                            <li class="mb-2"><i
+                                                    class="bi bi-check-circle-fill text-success me-2"></i>Ethical
+                                                AI development</li>
+                                            <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>AI
+                                                project implementation</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-5">
+                                <h4 class="mb-3">Requirements</h4>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i>Basic
+                                        understanding of programming (Python preferred)</li>
+                                    <li class="mb-2"><i
+                                            class="bi bi-arrow-right-circle text-primary me-2"></i>Fundamental
+                                        knowledge of mathematics and statistics</li>
+                                    <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i>A
+                                        computer with minimum 8GB RAM</li>
+                                    <li class="mb-2"><i class="bi bi-arrow-right-circle text-primary me-2"></i>Interest
+                                        in
+                                        AI and machine learning concepts</li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-5">
+                                <h4 class="mb-3">Who This Course Is For</h4>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2"><i class="bi bi-person-check text-info me-2"></i>Software
+                                        developers looking to expand into AI</li>
+                                    <li class="mb-2"><i class="bi bi-person-check text-info me-2"></i>Data
+                                        scientists wanting to deepen their knowledge</li>
+                                    <li class="mb-2"><i class="bi bi-person-check text-info me-2"></i>Engineers
+                                        interested in intelligent systems</li>
+                                    <li class="mb-2"><i class="bi bi-person-check text-info me-2"></i>Students
+                                        pursuing careers in technology</li>
+                                    <li class="mb-2"><i class="bi bi-person-check text-info me-2"></i>Professionals
+                                        seeking
+                                        to upskill in AI</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Curriculum Tab -->
+                        <div class="tab-pane fade" id="curriculum" role="tabpanel" aria-labelledby="curriculum-tab">
+                            <h3 class="mb-4">Course Curriculum</h3>
+
+                            <div class="accordion" id="accordionCurriculum">
+                                <!-- Module 1 -->
+                                <div class="accordion-item border mb-3 rounded-3">
+                                    <h2 class="accordion-header" id="headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <div class="d-flex justify-content-between w-100 me-3">
+                                                <span><strong>Module 1:</strong> Introduction to Artificial
+                                                    Intelligence</span>
+                                                <span class="text-muted">3 lessons • 2 hours</span>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="headingOne">
+                                        <div class="accordion-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        What is Artificial Intelligence?
+                                                    </div>
+                                                    <span>45 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        History and Evolution of AI
+                                                    </div>
+                                                    <span>35 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-file-text me-2 text-success"></i>
+                                                        AI Applications in Industry
+                                                    </div>
+                                                    <span>40 min</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Module 2 -->
+                                <div class="accordion-item border mb-3 rounded-3">
+                                    <h2 class="accordion-header" id="headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <div class="d-flex justify-content-between w-100 me-3">
+                                                <span><strong>Module 2:</strong> Machine Learning
+                                                    Fundamentals</span>
+                                                <span class="text-muted">4 lessons • 3 hours</span>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse"
+                                        aria-labelledby="headingTwo">
+                                        <div class="accordion-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        Supervised vs. Unsupervised Learning
+                                                    </div>
+                                                    <span>50 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        Regression and Classification Models
+                                                    </div>
+                                                    <span>45 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        Decision Trees and Random Forests
+                                                    </div>
+                                                    <span>40 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-file-earmark-code me-2 text-warning"></i>
+                                                        Practical: Building Your First ML Model
+                                                    </div>
+                                                    <span>45 min</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Module 3 -->
+                                <div class="accordion-item border mb-3 rounded-3">
+                                    <h2 class="accordion-header" id="headingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseThree">
+                                            <div class="d-flex justify-content-between w-100 me-3">
+                                                <span><strong>Module 3:</strong> Neural Networks</span>
+                                                <span class="text-muted">3 lessons • 2.5 hours</span>
+                                            </div>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse"
+                                        aria-labelledby="headingThree">
+                                        <div class="accordion-body">
+                                            <ul class="list-group list-group-flush">
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        Neural Network Architecture
+                                                    </div>
+                                                    <span>55 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-play-circle me-2 text-primary"></i>
+                                                        Activation Functions and Backpropagation
+                                                    </div>
+                                                    <span>50 min</span>
+                                                </li>
+                                                <li
+                                                    class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                                    <div>
+                                                        <i class="bi bi-file-earmark-code me-2 text-warning"></i>
+                                                        Building a Neural Network with Python
+                                                    </div>
+                                                    <span>45 min</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Continue with more modules -->
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-outline-primary rounded-pill">
+                                        View All 12 Modules <i class="bi bi-arrow-down-circle ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Instructor Tab -->
+                        <div class="tab-pane fade" id="instructor" role="tabpanel" aria-labelledby="instructor-tab">
+                            <h3 class="mb-4">Meet Your Instructor</h3>
+
+                            <div class="row">
+                                <div class="col-md-3 text-center">
+                                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d"
+                                        class="img-fluid rounded-circle mb-3" alt="Dr. Alan Turing"
+                                        style="width: 150px; height: 150px; object-fit: cover;">
+                                </div>
+                                <div class="col-md-9">
+                                    <h4 class="mb-1">Dr. Alan Turing</h4>
+                                    <p class="text-muted mb-3">AI Research Scientist, Ph.D. in Computer Science
+                                    </p>
+
+                                    <div class="mb-3">
+                                        <span class="badge bg-primary me-2">10+ Years Experience</span>
+                                        <span class="badge bg-secondary me-2">250+ Students</span>
+                                        <span class="badge bg-info">15+ Courses</span>
+                                    </div>
+
+                                    <p>Dr. Turing is a leading expert in artificial intelligence with extensive
+                                        experience in both academic research and industry applications. He has
+                                        led AI projects at major tech companies and published numerous papers in
+                                        top-tier conferences.</p>
+
+                                    <p>His teaching approach combines theoretical foundations with practical,
+                                        hands-on exercises that prepare students for real-world AI
+                                        implementation.</p>
+
+                                    <div class="social-links mt-3">
+                                        <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
+                                                class="bi bi-linkedin"></i></a>
+                                        <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
+                                                class="bi bi-twitter"></i></a>
+                                        <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
+                                                class="bi bi-globe"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Reviews Tab -->
+                        <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h3 class="mb-0">Student Reviews</h3>
+                                <button class="btn btn-outline-primary rounded-pill">Write a Review</button>
+                            </div>
+
+                            <div class="review-summary mb-4">
+                                <div class="row align-items-center">
+                                    <div class="col-md-3 text-center">
+                                        <div class="overall-rating">
+                                            <h1 class="display-3 fw-bold text-warning">4.5</h1>
+                                            <div class="stars mb-2">
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-fill text-warning"></i>
+                                                <i class="bi bi-star-half text-warning"></i>
+                                            </div>
+                                            <p class="text-muted">Based on 247 reviews</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="rating-bars">
+                                            <div class="rating-bar d-flex align-items-center mb-2">
+                                                <div class="me-2">5 stars</div>
+                                                <div class="progress flex-grow-1" style="height: 8px;">
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 75%"></div>
+                                                </div>
+                                                <div class="ms-2">75%</div>
+                                            </div>
+                                            <div class="rating-bar d-flex align-items-center mb-2">
+                                                <div class="me-2">4 stars</div>
+                                                <div class="progress flex-grow-1" style="height: 8px;">
+                                                    <div class="progress-bar bg-success" role="progressbar"
+                                                        style="width: 15%"></div>
+                                                </div>
+                                                <div class="ms-2">15%</div>
+                                            </div>
+                                            <div class="rating-bar d-flex align-items-center mb-2">
+                                                <div class="me-2">3 stars</div>
+                                                <div class="progress flex-grow-1" style="height: 8px;">
+                                                    <div class="progress-bar bg-warning" role="progressbar"
+                                                        style="width: 5%"></div>
+                                                </div>
+                                                <div class="ms-2">5%</div>
+                                            </div>
+                                            <div class="rating-bar d-flex align-items-center mb-2">
+                                                <div class="me-2">2 stars</div>
+                                                <div class="progress flex-grow-1" style="height: 8px;">
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                        style="width: 3%"></div>
+                                                </div>
+                                                <div class="ms-2">3%</div>
+                                            </div>
+                                            <div class="rating-bar d-flex align-items-center">
+                                                <div class="me-2">1 star</div>
+                                                <div class="progress flex-grow-1" style="height: 8px;">
+                                                    <div class="progress-bar bg-danger" role="progressbar"
+                                                        style="width: 2%"></div>
+                                                </div>
+                                                <div class="ms-2">2%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Individual Reviews -->
+                            <div class="individual-reviews">
+                                <!-- Review 1 -->
+                                <div class="review border-bottom pb-4 mb-4">
+                                    <div class="d-flex mb-3">
+                                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+                                            class="rounded-circle me-3" alt="Sarah Johnson"
+                                            style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div>
+                                            <h5 class="mb-1">Sarah Johnson</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="stars me-2">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                </div>
+                                                <span class="text-muted">2 weeks ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>This course exceeded my expectations in every way! Dr. Turing is an
+                                        exceptional instructor who breaks down complex AI concepts into
+                                        digestible pieces. The hands-on projects were challenging but incredibly
+                                        valuable. I've already started applying what I learned in my current
+                                        job.</p>
+                                </div>
+
+                                <!-- Review 2 -->
+                                <div class="review border-bottom pb-4 mb-4">
+                                    <div class="d-flex mb-3">
+                                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e"
+                                            class="rounded-circle me-3" alt="Michael Chen"
+                                            style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div>
+                                            <h5 class="mb-1">Michael Chen</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="stars me-2">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star text-warning"></i>
+                                                </div>
+                                                <span class="text-muted">1 month ago</span>
+                                            </div>
+                                            <p>Great course with comprehensive content on AI. The neural
+                                                networks section was particularly well-presented. I'm taking off
+                                                one star only because I wish there were more advanced examples
+                                                in the later modules. Still, highly recommended for anyone
+                                                serious about learning AI fundamentals.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Review 3 -->
+                                <div class="review border-bottom pb-4 mb-4">
+                                    <div class="d-flex mb-3">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+                                            class="rounded-circle me-3" alt="James Wilson"
+                                            style="width: 60px; height: 60px; object-fit: cover;">
+                                        <div>
+                                            <h5 class="mb-1">James Wilson</h5>
+                                            <div class="d-flex align-items-center">
+                                                <div class="stars me-2">
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star-fill text-warning"></i>
+                                                    <i class="bi bi-star text-warning"></i>
+                                                    <i class="bi bi-star text-warning"></i>
+                                                </div>
+                                                <span class="text-muted">2 months ago</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>The content is solid and Dr. Turing is clearly knowledgeable, but
+                                        I found some sections moved too quickly for beginners. The
+                                        Python requirements should be more clearly stated upfront. The
+                                        projects were interesting though, and technical support was
+                                        responsive when I had questions.</p>
+                                </div>
+
+                                <div class="text-center mt-4">
+                                    <button class="btn btn-outline-primary rounded-pill">
+                                        Load More Reviews <i class="bi bi-arrow-down-circle ms-2"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Sidebar Column -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm sticky-lg-top" style="top: 100px; z-index: 10;">
+                    <div class="card-body">
+                        <div class="course-price mb-4">
+                            <div class="d-flex align-items-center">
+                                <h3 class="price mb-0 me-2">$499</h3>
+                                <span class="text-decoration-line-through text-muted">$699</span>
+                                <span class="ms-2 badge bg-danger">28% Off</span>
+                            </div>
+                            <p class="text-muted small mt-1">Limited time offer | 3 days left at
+                                this price</p>
+                        </div>
+
+                        <div class="d-grid gap-2 mb-4">
+                            <button class="btn btn-primary btn-lg">Enroll Now</button>
+                            <button class="btn btn-outline-primary">Add to Wishlist <i
+                                    class="bi bi-heart ms-1"></i></button>
+                        </div>
+
+                        <div class="course-includes mb-4">
+                            <h5 class="mb-3">This Course Includes:</h5>
+                            <ul class="list-unstyled mb-0">
+                                <li class="mb-2">
+                                    <i class="bi bi-play-circle text-primary me-2"></i>
+                                    24 hours on-demand video
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-file-earmark-text text-primary me-2"></i>
+                                    15 downloadable resources
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-code-slash text-primary me-2"></i>
+                                    10 coding exercises
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-trophy text-primary me-2"></i>
+                                    Certificate of completion
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-phone text-primary me-2"></i>
+                                    Mobile and TV access
+                                </li>
+                                <li class="mb-2">
+                                    <i class="bi bi-infinity text-primary me-2"></i>
+                                    Full lifetime access
+                                </li>
+                                <li>
+                                    <i class="bi bi-chat-dots text-primary me-2"></i>
+                                    Direct instructor support
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="course-info mb-4">
+                            <h5 class="mb-3">Course Information:</h5>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Enrolled Students:</span>
+                                <span class="fw-semibold">3,587</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Last Updated:</span>
+                                <span class="fw-semibold">March 2025</span>
+                            </div>
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Language:</span>
+                                <span class="fw-semibold">English</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>Difficulty Level:</span>
+                                <span class="fw-semibold">Intermediate</span>
+                            </div>
+                        </div>
+
+                        <div class="coupon-section">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Enter coupon code">
+                                <button class="btn btn-outline-primary" type="button">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Courses Section -->
+<section id="related-courses" class="related-courses py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <h2 class="section-title text-center mb-5">Related Courses You May Like</h2>
+
+        <div class="row g-4">
+            <!-- Related Course 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card course-card h-100 shadow-sm">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb" class="card-img-top"
+                            alt="Machine Learning Specialization" style="height: 200px; object-fit: cover;">
+                        <div class="position-absolute top-0 end-0 p-2">
+                            <span class="badge bg-primary">Bestseller</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-light text-dark">Intermediate</span>
+                            <div class="course-rating">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <span>4.7 (320)</span>
+                            </div>
+                        </div>
+                        <h5 class="card-title mb-2">Machine Learning Specialization</h5>
+                        <p class="card-text text-muted mb-3">Master machine learning algorithms and techniques
+                            with hands-on projects</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="instructor d-flex align-items-center">
+                                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
+                                    class="rounded-circle me-2" alt="Dr. Emily Lee"
+                                    style="width: 30px; height: 30px; object-fit: cover;">
+                                <span class="small">Dr. Emily Lee</span>
+                            </div>
+                            <div class="price fw-bold">$399</div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <a href="#" class="btn btn-outline-primary w-100">View Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Course 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card course-card h-100 shadow-sm">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b" class="card-img-top"
+                            alt="Deep Learning Masterclass" style="height: 200px; object-fit: cover;">
+                        <div class="position-absolute top-0 end-0 p-2">
+                            <span class="badge bg-success">New</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-light text-dark">Advanced</span>
+                            <div class="course-rating">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <span>4.8 (215)</span>
+                            </div>
+                        </div>
+                        <h5 class="card-title mb-2">Deep Learning Masterclass</h5>
+                        <p class="card-text text-muted mb-3">Advanced neural networks and deep learning
+                            architectures explained</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="instructor d-flex align-items-center">
+                                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+                                    class="rounded-circle me-2" alt="Prof. David Wong"
+                                    style="width: 30px; height: 30px; object-fit: cover;">
+                                <span class="small">Prof. David Wong</span>
+                            </div>
+                            <div class="price fw-bold">$549</div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <a href="#" class="btn btn-outline-primary w-100">View Course</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Related Course 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card course-card h-100 shadow-sm">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a" class="card-img-top"
+                            alt="Natural Language Processing" style="height: 200px; object-fit: cover;">
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="badge bg-light text-dark">Intermediate</span>
+                            <div class="course-rating">
+                                <i class="bi bi-star-fill text-warning"></i>
+                                <span>4.6 (178)</span>
+                            </div>
+                        </div>
+                        <h5 class="card-title mb-2">Natural Language Processing</h5>
+                        <p class="card-text text-muted mb-3">Build intelligent text and speech processing
+                            systems</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="instructor d-flex align-items-center">
+                                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956"
+                                    class="rounded-circle me-2" alt="Dr. Rebecca Martinez"
+                                    style="width: 30px; height: 30px; object-fit: cover;">
+                                <span class="small">Dr. Rebecca Martinez</span>
+                            </div>
+                            <div class="price fw-bold">$429</div>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <a href="#" class="btn btn-outline-primary w-100">View Course</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section id="cta" class="cta position-relative py-5 my-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10" data-aos="fade-up" data-aos-duration="800">
+                <div class="cta-content position-relative overflow-hidden bg-gradient p-0 rounded-4 shadow-lg">
+                    <!-- Decorative elements -->
+                    <div class="position-absolute top-0 start-0 w-100 h-100 bg-primary opacity-90"></div>
+                    <div class="position-absolute top-0 end-0 d-none d-md-block">
+                        <i class="bx bxs-brain text-white opacity-10" style="font-size: 12rem;"></i>
+                    </div>
+
+                    <!-- Content wrapper -->
+                    <div class="position-relative p-5 text-center text-md-start">
+                        <div class="row align-items-center">
+                            <div class="col-md-7 mb-4 mb-md-0">
+                                <span class="badge bg-white text-primary px-3 py-2 fw-bold mb-3">Limited Time
+                                    Offer</span>
+                                <h2 class="display-5 fw-bold text-white mb-3">Transform Your Future With AI Skills</h2>
+                                <p class="lead text-white opacity-90 mb-4">Join over 25,000 students who have launched
+                                    successful careers after completing our expert-led AI training programs.</p>
+                                <ul class="list-unstyled mb-4">
+                                    <li class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-check-circle-fill text-white me-2"></i>
+                                        <span class="text-white">Industry-recognized certifications</span>
+                                    </li>
+                                    <li class="d-flex align-items-center mb-2">
+                                        <i class="bi bi-check-circle-fill text-white me-2"></i>
+                                        <span class="text-white">Hands-on project experience</span>
+                                    </li>
+                                    <li class="d-flex align-items-center">
+                                        <i class="bi bi-check-circle-fill text-white me-2"></i>
+                                        <span class="text-white">Job placement assistance</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="card border-0 shadow-lg p-4">
+                                    <div class="card-body text-center">
+                                        <h3 class="fw-bold text-primary mb-3">Get Started Today</h3>
+                                        <p class="text-dark mb-4">Secure your spot in our next cohort starting May 15
+                                        </p>
+                                        <div class="d-grid gap-3">
+                                            <button type="button"
+                                                class="btn btn-primary btn-lg fw-bold p-3 d-flex align-items-center justify-content-center">
+                                                <i class="bi bi-rocket-takeoff me-2"></i> Enroll Now
+                                            </button>
+                                            <button type="button" class="btn btn-outline-primary">
+                                                Browse All Courses
+                                            </button>
+                                        </div>
+                                        <div class="mt-3 text-muted small">
+                                            <i class="bi bi-shield-check me-1"></i> 30-day money-back guarantee
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Call to Action Section -->
+
+<!-- FAQ Section -->
+<section id="faq" class="faq py-5 bg-light">
+    <div class="container" data-aos="fade-up">
+        <h2 class="section-title text-center mb-5">Frequently Asked Questions</h2>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="accordion" id="faqAccordion">
+                    <!-- FAQ Item 1 -->
+                    <div class="accordion-item mb-3 border rounded-3">
+                        <h2 class="accordion-header" id="faqHeading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                Do I need prior programming experience for this course?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Basic programming knowledge, particularly in Python, is recommended for this
+                                course. However, we provide refresher materials and additional resources for
+                                those who need to brush up on their programming skills. The first module
+                                includes a Python primer to help you get up to speed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="accordion-item mb-3 border rounded-3">
+                        <h2 class="accordion-header" id="faqHeading2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                How long do I have access to the course materials?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Once enrolled, you have lifetime access to all course materials, including
+                                future updates. You can revisit the lectures, download resources, and
+                                participate in the community discussions at any time.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="accordion-item mb-3 border rounded-3">
+                        <h2 class="accordion-header" id="faqHeading3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                Is there a certificate upon completion?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                Yes, you will receive a certificate of completion after finishing all course
+                                modules and passing the final assessment. This certificate can be added to your
+                                resume or LinkedIn profile to showcase your AI skills to potential employers.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="accordion-item mb-3 border rounded-3">
+                        <h2 class="accordion-header" id="faqHeading4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                Can I get a refund if the course doesn't meet my expectations?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We offer a 30-day money-back guarantee. If you're not satisfied with the course
+                                within the first 30 days after enrollment, you can request a full refund with no
+                                questions asked.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 -->
+                    <div class="accordion-item border rounded-3">
+                        <h2 class="accordion-header" id="faqHeading5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                How much time should I dedicate to this course weekly?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5"
+                            data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                We recommend dedicating 6-8 hours per week to get the most out of this course.
+                                This includes watching lectures, completing exercises, and working on projects.
+                                However, the course is self-paced, so you can adjust your schedule according to
+                                your availability.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
