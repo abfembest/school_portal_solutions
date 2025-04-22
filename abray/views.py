@@ -10,6 +10,9 @@ def course(request):
 def course_details(request):
     return render(request, 'courses-details.html')
 
+def course_upload(request):
+    return render(request, 'course-upload.html')
+
 def register(request):
     return render(request, 'signup.html')
 
