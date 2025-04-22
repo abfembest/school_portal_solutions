@@ -16,6 +16,20 @@
         <p class="h6 my-5">Create your account to get started with our services</p>
     </div>
 
+    <!-- Message Pane -->
+    <div class="container">
+        {% if messages %}
+            <div class="alert alert-dismissible fade show" role="alert">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
@@ -256,6 +270,15 @@
                             </select>
                         </div>
 
+                        <div class="col-md-6">
+                            <label for="password" class="pb-2">Password</label>
+                            <input type="password" class="form-control" name="password" id="password" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="confrim-password" class="pb-2">Confirm Password</label>
+                            <input type="password" class="form-control" name="confirm_password" id="confirm-password" required>
+                        </div>
 
                         <div class="col-md-12 text-center pt-4">
                             <button type="submit" class="w-100 bg-primary">Sign Up</button>

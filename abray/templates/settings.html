@@ -1,0 +1,82 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} Account Settings | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section - Fixed with proper spacing -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                <li class="breadcrumb-item"><a href="courses.html">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Artificial Intelligence</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs Section -->
+
+<section id="account-settings" class="account-settings section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Account Settings</h2>
+            <p>Manage your account settings.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="profile-sidebar">
+                    <div class="profile-userpic">
+                        <img src="{% static 'assets/img/user.png' %}" class="img-responsive" alt="">
+                    </div>
+                    <div class="profile-usertitle">
+                        <h5 class="profile-usertitle-name">{{ user.first_name }} {{ user.last_name }}</h5>
+                        <span class="profile-usertitle-job">{{ user.email }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="account-settings-content">
+                    <h3>Edit Profile Information</h3>
+                    <form method="post" class="php-email-form">
+                        {% csrf_token %}
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <label for="first-name" class="pb-2">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first-name" value="{{ user.first_name }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last-name" class="pb-2">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last-name" value="{{ user.last_name }}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="pb-2">Email Address</label>
+                                <input type="email" class="form-control" name="email" id="email" value="{{ user.email }}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="course" class="pb-2">Course Option</label>
+                                <select class="form-control" name="course" id="course" required>
+                                    <option value="{{ user.profile.course.name }}">{{ user.profile.course.name }}</option>
+                                    <!-- Add more course options here -->
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="country" class="pb-2">Country</label>
+                                <select class="form-control" name="country" id="country" required>
+                                    <option value="{{ user.profile.country.name }}">{{ user.profile.country.name }}</option>
+                                    <!-- Add more country options here -->
+                                </select>
+                            </div>
+                            <div class="col-md-12 text-center pt-4">
+                                <button type="submit" class="w-100 bg-primary">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

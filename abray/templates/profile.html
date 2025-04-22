@@ -1,0 +1,164 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} Profile | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'course' %}">Courses</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs Section -->
+
+<section id="profile" class="profile section-padding">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title text-center mb-5">
+            <h2>Profile</h2>
+            <p>View and manage your profile information</p>
+        </div>
+        
+        <div class="row gy-4">
+            <div class="col-lg-4">
+                <div class="profile-sidebar card shadow-sm">
+                    <div class="profile-userpic text-center p-4">
+                        <img src="{% static 'assets/img/user.png' %}" class="img-fluid rounded-circle mb-3" alt="Profile Picture" style="max-width: 150px;">
+                    </div>
+                    <div class="profile-usertitle text-center p-3">
+                        <h4 class="profile-usertitle-name mb-2">{{ user.first_name }} {{ user.last_name }}</h4>
+                        <span class="profile-usertitle-job text-muted">{{ user.email }}</span>
+                    </div>
+                    <div class="profile-userbuttons text-center p-3">
+                        <a href="{% url 'account_settings' %}" class="btn btn-outline-primary btn-sm">Edit Profile</a>
+                    </div>
+                    <div class="profile-usermenu p-3">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item active">
+                                <i class="bi bi-person me-2"></i> Profile Overview
+                            </li>
+                            <li class="list-group-item">
+                                <i class="bi bi-book me-2"></i> My Courses
+                            </li>
+                            <li class="list-group-item">
+                                <i class="bi bi-calendar-check me-2"></i> Schedule
+                            </li>
+                            <li class="list-group-item">
+                                <i class="bi bi-award me-2"></i> Certificates
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-8">
+                <div class="profile-content card shadow-sm p-4">
+                    <h3 class="border-bottom pb-3 mb-4">Profile Information</h3>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">First Name:</label>
+                                <p class="ms-2">{{ user.first_name }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Last Name:</label>
+                                <p class="ms-2">{{ user.last_name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Email:</label>
+                                <p class="ms-2">{{ user.email }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Username:</label>
+                                <p class="ms-2">{{ user.username }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Course:</label>
+                                <p class="ms-2">{{ user.profile.course.name }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Country:</label>
+                                <p class="ms-2">{{ user.profile.country.name }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Join Date:</label>
+                                <p class="ms-2">{{ user.date_joined|date:"F d, Y" }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info-item mb-4">
+                                <label class="fw-bold text-muted">Last Login:</label>
+                                <p class="ms-2">{{ user.last_login|date:"F d, Y" }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="text-end mt-4">
+                        <a href="{% url 'account_settings' %}" class="btn-getstarted">Edit Profile</a>
+                    </div>
+                </div>
+                
+                <!-- Progress Section -->
+                <div class="profile-progress card shadow-sm p-4 mt-4">
+                    <h3 class="border-bottom pb-3 mb-4">Course Progress</h3>
+                    <div class="progress-item mb-4">
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>{{ user.profile.course.name }}</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4">
+                        <h5>Recent Activities</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Completed Module 3: Data Structures
+                                <span class="badge bg-primary rounded-pill">3 days ago</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Submitted Project: Algorithm Design
+                                <span class="badge bg-primary rounded-pill">1 week ago</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Started Module 4: Advanced Concepts
+                                <span class="badge bg-primary rounded-pill">Today</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
