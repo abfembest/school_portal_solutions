@@ -33,6 +33,9 @@ def timetable(request):
 def mycourse(request):
     return render(request, 'user/courses.html')
 
+def assignments(request):
+    return render(request, 'user/assignments.html')
+
 
 def register(request):
     if request.user.is_authenticated:
