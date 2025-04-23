@@ -36,6 +36,12 @@ def mycourse(request):
 def assignments(request):
     return render(request, 'user/assignments.html')
 
+def grade_reports(request):
+    return render(request, 'user/grades&report.html')
+
+def attendance(request):
+    return render(request, 'user/attendance.html')
+
 
 def register(request):
     if request.user.is_authenticated:
