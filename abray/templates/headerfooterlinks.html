@@ -39,26 +39,43 @@
 
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-            <a href="index.html" class="logo d-flex align-items-center me-auto">
+            <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
                 <h1 class="sitename">Abraytech</h1>
             </a>
             
             <nav id="navmenu" class="navmenu">
                 <ul>
-                    <li><a href="{% url 'home' %}">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="{% url 'course' %}">Tech skills</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span>Academics</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="#departments">Departments</a></li>
-                            <li><a href="#curriculum">Curriculum</a></li>
-                            <li><a href="#teachers">Teachers</a></li>
-                            <li><a href="#students">Students</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#events">Events</a></li>
-                    <li><a href="{% url 'home' %}#contact">Contact</a></li>
+                    {% if user.is_authenticated %}
+                        <li><a href="{% url 'user_dashboard' %}"><i class="bi bi-speedometer2"></i> Dashboard</a></li>
+                        <li><a href="{% url 'mycourse' %}"><i class="bi bi-book"></i> Courses</a></li>
+                        <li><a href="{% url 'timetable' %}"><i class="bi bi-calendar3"></i> Timetable</a></li>
+                        <li><a href="{% url 'assignments' %}"><i class="bi bi-file-earmark-text"></i> Assignments</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span><i class="bi bi-gear"></i> More</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="{% url 'grades' %}"><i class="bi bi-graph-up"></i> Grades</a></li>
+                                <li><a href="{% url 'attendance' %}"><i class="bi bi-check2-square"></i> Attendance</a></li>
+                                <li><a href="{ url 'messages' %}"><i class="bi bi-chat-dots"></i> Messages</a></li>
+                                <li><a href="{ url 'fees' %}"><i class="bi bi-cash-coin"></i> Fees</a></li>
+                                <li><a href="{ url 'resources' %}"><i class="bi bi-journal-richtext"></i> Resources</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="{% url 'course' %}">Tech skills</a></li>
+                        <li class="dropdown">
+                            <a href="#"><span>Academics</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                            <ul>
+                                <li><a href="#departments">Departments</a></li>
+                                <li><a href="#curriculum">Curriculum</a></li>
+                                <li><a href="#teachers">Teachers</a></li>
+                                <li><a href="#students">Students</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#events">Events</a></li>
+                        <li><a href="{% url 'home' %}#contact">Contact</a></li>
+                    {% endif %}
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
             </nav>
@@ -67,12 +84,20 @@
                 <div class="user-account dropdown d-none d-md-inline-block btn-getstarted">
                     <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
                         <i class="bi bi-person-circle"></i> {{ user.username }}
+                        {% if unread_messages_count %}
+                            <span class="badge bg-danger">{{ unread_messages_count }}</span>
+                        {% endif %}
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{% url 'profile' %}">My Profile</a></li>
-                        <li><a class="dropdown-item" href="{% url 'account_settings' %}">Account Settings</a></li>
+                        <li><a class="dropdown-item" href="{% url 'profile' %}"><i class="bi bi-person"></i> My Profile</a></li>
+                        <li><a class="dropdown-item" href="{ url 'messages' %}"><i class="bi bi-envelope"></i> Messages
+                            {% if unread_messages_count %}
+                                <span class="badge bg-danger float-end">{{ unread_messages_count }}</span>
+                            {% endif %}
+                        </a></li>
+                        <li><a class="dropdown-item" href="{% url 'account_settings' %}"><i class="bi bi-gear"></i> Account Settings</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout' %}"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
                     </ul>
                 </div>
             {% else %}

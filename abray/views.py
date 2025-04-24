@@ -17,15 +17,35 @@ def course_details(request):
 def course_upload(request):
     return render(request, 'course-upload.html')
 
+#User Code
+def user_dashboard(request):
+    return render(request, 'user/user_dashboard.html')
+
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'user/profile.html')
 
 def account_settings(request):
     return render(request, 'settings.html')
 
+def timetable(request):
+    return render(request, 'user/timetable.html')
+
+def mycourse(request):
+    return render(request, 'user/courses.html')
+
+def assignments(request):
+    return render(request, 'user/assignments.html')
+
+def grade_reports(request):
+    return render(request, 'user/grades&report.html')
+
+def attendance(request):
+    return render(request, 'user/attendance.html')
+
+
 def register(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('user_dashboard')
 
     if request.method == 'POST':
         # Get form data
@@ -86,7 +106,7 @@ def register(request):
 
 def login(request):
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('user_dashboard')
 
     if request.method == 'POST':
         email = request.POST['email']
@@ -105,7 +125,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             messages.success(request, f"Welcome back, {user.first_name}!")
-            return redirect('home')  # Redirect to dashboard or home page
+            return redirect('user_dashboard')  # Redirect to dashboard or home page
         else:
             messages.error(request, "Invalid email or password")
             return redirect('login')

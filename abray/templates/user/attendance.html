@@ -1,0 +1,352 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% load static %}
+
+{% block title %}Attendance | AbrayTech{% endblock %}
+
+{% block page_title %}Attendance{% endblock %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item active" aria-current="page">Attendance</li>
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'user_dashboard' %}">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">{{user.first_name}} {{user.last_name}} Dashboard</li>
+                {% comment %} <li class="breadcrumb-item active" aria-current="page">My Profile</li> {% endcomment %}
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs Section -->
+
+<section class="container">
+
+<div class="attendance-dashboard">
+    <!-- Attendance Overview Card -->
+    <div class="card mb-4">
+        <div class="card-header bg-info text-white">
+            <h5 class="mb-0"><i class="bi bi-calendar-check me-2"></i>Attendance Overview</h5>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="p-3 border rounded text-center">
+                        <h6>Overall Attendance</h6>
+                        <div class="attendance-chart">
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar {% if attendance_stats.overall_percentage >= 90 %}bg-success{% elif attendance_stats.overall_percentage >= 75 %}bg-info{% elif attendance_stats.overall_percentage >= 60 %}bg-warning{% else %}bg-danger{% endif %}" 
+                                    role="progressbar" 
+                                    style="width: {{ attendance_stats.overall_percentage }}%;" 
+                                    aria-valuenow="{{ attendance_stats.overall_percentage }}" 
+                                    aria-valuemin="0" 
+                                    aria-valuemax="100">{{ attendance_stats.overall_percentage }}%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="p-3 border rounded text-center">
+                        <h6>Days Present</h6>
+                        <h3>{{ attendance_stats.days_present }}</h3>
+                        <p class="text-muted small mb-0">out of {{ attendance_stats.total_days }}</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="p-3 border rounded text-center">
+                        <h6>Days Absent</h6>
+                        <h3>{{ attendance_stats.days_absent }}</h3>
+                        <span class="badge {% if attendance_stats.days_absent <= 3 %}bg-success{% elif attendance_stats.days_absent <= 7 %}bg-warning{% else %}bg-danger{% endif %}">
+                            {{ attendance_stats.absence_status }}
+                        </span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <div class="p-3 border rounded text-center">
+                        <h6>Late Arrivals</h6>
+                        <h3>{{ attendance_stats.days_late }}</h3>
+                        <p class="text-muted small mb-0">Total minutes late: {{ attendance_stats.total_minutes_late }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Monthly Attendance View -->
+    <div class="card mb-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5 class="mb-0"><i class="bi bi-calendar3 me-2"></i>Monthly Attendance</h5>
+            <div class="month-navigator">
+                <form action="{ url 'attendance' %}" method="get" class="d-flex align-items-center">
+                    <button type="submit" name="month" value="{{ prev_month }}" class="btn btn-sm btn-outline-secondary me-2">
+                        <i class="bi bi-chevron-left"></i> Previous
+                    </button>
+                    <select name="month" class="form-select form-select-sm" style="width: auto;" onchange="this.form.submit()">
+                        {% for month_option in available_months %}
+                        <option value="{{ month_option.value }}" {% if month_option.value == current_month %}selected{% endif %}>
+                            {{ month_option.label }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                    <button type="submit" name="month" value="{{ next_month }}" class="btn btn-sm btn-outline-secondary ms-2">
+                        Next <i class="bi bi-chevron-right"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="calendar-view mb-4">
+                <div class="table-responsive">
+                    <table class="table table-bordered calendar-table">
+                        <thead>
+                            <tr>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                                <th>Sun</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for week in calendar_weeks %}
+                            <tr>
+                                {% for day in week %}
+                                <td class="{% if day.date == today %}today{% endif %} {% if day.status == 'present' %}present{% elif day.status == 'absent' %}absent{% elif day.status == 'late' %}late{% elif day.status == 'excused' %}excused{% elif day.is_class_day %}class-day{% endif %} {% if not day.in_month %}not-in-month{% endif %}">
+                                    {% if day.date %}
+                                    <div class="calendar-date">{{ day.date|date:"d" }}</div>
+                                    {% if day.status %}
+                                    <div class="attendance-status">
+                                        {% if day.status == 'present' %}
+                                        <i class="bi bi-check-circle-fill text-success" title="Present"></i>
+                                        {% elif day.status == 'absent' %}
+                                        <i class="bi bi-x-circle-fill text-danger" title="Absent"></i>
+                                        {% elif day.status == 'late' %}
+                                        <i class="bi bi-clock-fill text-warning" title="Late ({{ day.late_minutes }} min)"></i>
+                                        {% elif day.status == 'excused' %}
+                                        <i class="bi bi-shield-fill-check text-info" title="Excused"></i>
+                                        {% endif %}
+                                    </div>
+                                    {% endif %}
+                                    {% endif %}
+                                </td>
+                                {% endfor %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="legend text-center mb-3">
+                <span class="legend-item"><i class="bi bi-check-circle-fill text-success"></i> Present</span>
+                <span class="legend-item"><i class="bi bi-x-circle-fill text-danger"></i> Absent</span>
+                <span class="legend-item"><i class="bi bi-clock-fill text-warning"></i> Late</span>
+                <span class="legend-item"><i class="bi bi-shield-fill-check text-info"></i> Excused</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Log Table -->
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-list-check me-2"></i>Daily Attendance Log</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Day</th>
+                            <th>Course</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for record in attendance_records %}
+                        <tr>
+                            <td>{{ record.date }}</td>
+                            <td>{{ record.date|date:"l" }}</td>
+                            <td>{{ record.course.name }}</td>
+                            <td>{{ record.class_time }}</td>
+                            <td>
+                                {% if record.status == 'present' %}
+                                <span class="badge bg-success">Present</span>
+                                {% elif record.status == 'absent' %}
+                                <span class="badge bg-danger">Absent</span>
+                                {% elif record.status == 'late' %}
+                                <span class="badge bg-warning">Late ({{ record.late_minutes }} min)</span>
+                                {% elif record.status == 'excused' %}
+                                <span class="badge bg-info">Excused</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ record.notes|default:"-" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-3">No attendance records found for this period.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Absence Excuse Form -->
+    <div class="card">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-exclamation-circle me-2"></i>Submit Absence Excuse</h5>
+        </div>
+        <div class="card-body">
+            <form action="{ url 'submit_absence_excuse' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="absence_date" class="form-label">Absence Date</label>
+                        <input type="date" class="form-control" id="absence_date" name="absence_date" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="course" class="form-label">Course</label>
+                        <select class="form-select" id="course" name="course" required>
+                            <option value="" selected disabled>Select course</option>
+                            {% for course in student_courses %}
+                            <option value="{{ course.id }}">{{ course.name }} ({{ course.code }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="excuse_type" class="form-label">Excuse Type</label>
+                    <select class="form-select" id="excuse_type" name="excuse_type" required>
+                        <option value="" selected disabled>Select excuse type</option>
+                        <option value="medical">Medical</option>
+                        <option value="family">Family Emergency</option>
+                        <option value="technical">Technical Issues</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="reason" class="form-label">Detailed Reason</label>
+                    <textarea class="form-control" id="reason" name="reason" rows="3" required></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="supporting_document" class="form-label">Supporting Document (if applicable)</label>
+                    <input class="form-control" type="file" id="supporting_document" name="supporting_document">
+                    <div class="form-text">Upload medical certificate, official letter, or other supporting document (PDF, JPG, PNG)</div>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-send"></i> Submit Excuse</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Excuse Submissions History -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Previous Excuse Submissions</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Submission Date</th>
+                            <th>Absence Date</th>
+                            <th>Course</th>
+                            <th>Excuse Type</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for excuse in excuse_submissions %}
+                        <tr>
+                            <td>{{ excuse.submitted_date }}</td>
+                            <td>{{ excuse.absence_date }}</td>
+                            <td>{{ excuse.course.name }}</td>
+                            <td>{{ excuse.excuse_type|title }}</td>
+                            <td>
+                                {% if excuse.status == 'approved' %}
+                                <span class="badge bg-success">Approved</span>
+                                {% elif excuse.status == 'denied' %}
+                                <span class="badge bg-danger">Denied</span>
+                                {% else %}
+                                <span class="badge bg-warning">Pending</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal" data-bs-target="#excuseDetails{{ excuse.id }}">
+                                    <i class="bi bi-eye"></i> View Details
+                                </button>
+                                
+                                <!-- Modal for Excuse Details -->
+                                <div class="modal fade" id="excuseDetails{{ excuse.id }}" tabindex="-1" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Absence Excuse Details</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Submitted:</strong> {{ excuse.submitted_date }}</p>
+                                                <p><strong>Absence Date:</strong> {{ excuse.absence_date }}</p>
+                                                <p><strong>Course:</strong> {{ excuse.course.name }}</p>
+                                                <p><strong>Excuse Type:</strong> {{ excuse.excuse_type|title }}</p>
+                                                <p><strong>Reason:</strong> {{ excuse.reason }}</p>
+                                                {% if excuse.supporting_document %}
+                                                <p><strong>Supporting Document:</strong> <a href="{{ excuse.supporting_document.url }}" target="_blank">View Document</a></p>
+                                                {% endif %}
+                                                {% if excuse.staff_response %}
+                                                <p><strong>Response:</strong> {{ excuse.staff_response }}</p>
+                                                {% endif %}
+                                                <p><strong>Status:</strong> 
+                                                    {% if excuse.status == 'approved' %}
+                                                    <span class="badge bg-success">Approved</span>
+                                                    {% elif excuse.status == 'denied' %}
+                                                    <span class="badge bg-danger">Denied</span>
+                                                    {% else %}
+                                                    <span class="badge bg-warning">Pending</span>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" class="text-center py-3">No excuse submissions found.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    // Initialize date picker to default to today
+    document.addEventListener('DOMContentLoaded', function() {
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('absence_date').value = today;
+    });
+</script>
+{% endblock %}

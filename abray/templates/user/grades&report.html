@@ -1,0 +1,327 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% load static %}
+
+{% block title %}Grades & Reports | AbrayTech{% endblock %}
+
+{% block page_title %}Grades & Reports{% endblock %}
+
+{% block breadcrumbs %}
+<li class="breadcrumb-item active" aria-current="page">Grades & Reports</li>
+{% endblock %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'user_dashboard' %}">Home</a></li>
+                <li class="breadcrumb-item" aria-current="page">{{user.first_name}} {{user.last_name}} Dashboard</li>
+                {% comment %} <li class="breadcrumb-item active" aria-current="page">My Profile</li> {% endcomment %}
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs Section -->
+
+<section class="container">
+    <div class="grades-dashboard">
+        <!-- GPA Overview Card -->
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-trophy me-2"></i>Academic Performance Overview</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3 mb-md-0">
+                        <div class="gpa-display text-center p-4 border rounded">
+                            <h6>Current GPA</h6>
+                            <h2 class="display-4">{{ student_profile.current_gpa|default:"0.00" }}</h2>
+                            <p class="text-muted">out of 4.0</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded text-center">
+                                    <h6>Cumulative GPA</h6>
+                                    <h3>{{ student_profile.cumulative_gpa|default:"0.00" }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded text-center">
+                                    <h6>Credits Earned</h6>
+                                    <h3>{{ student_profile.credits_earned|default:"0" }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded text-center">
+                                    <h6>Current Rank</h6>
+                                    <h3>{{ student_profile.class_rank|default:"N/A" }}</h3>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="p-3 border rounded text-center">
+                                    <h6>Courses Completed</h6>
+                                    <h3>{{ student_profile.courses_completed|default:"0" }}</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gradebook Section -->
+        <div class="card mb-4">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0"><i class="bi bi-journal-check me-2"></i>Gradebook</h5>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="termDropdown"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ current_term|default:"Current Term" }}
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="termDropdown">
+                        {% for term in available_terms %}
+                        <li><a class="dropdown-item" href="{% url 'grades' %}?term={{ term.id }}">{{ term.name }}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Code</th>
+                                <th>Credits</th>
+                                <th>Midterm Grade</th>
+                                <th>Final Grade</th>
+                                <th>Letter Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for grade in course_grades %}
+                            <tr>
+                                <td>{{ grade.course.name }}</td>
+                                <td>{{ grade.course.code }}</td>
+                                <td>{{ grade.course.credits }}</td>
+                                <td>{{ grade.midterm_grade|default:"N/A" }}</td>
+                                <td>{{ grade.final_grade|default:"N/A" }}</td>
+                                <td>
+                                    {% if grade.letter_grade %}
+                                    <span
+                                        class="badge {% if grade.letter_grade == 'A' or grade.letter_grade == 'A-' %}bg-success{% elif grade.letter_grade == 'F' %}bg-danger{% elif grade.letter_grade == 'B+' or grade.letter_grade == 'B' or grade.letter_grade == 'B-' %}bg-primary{% else %}bg-warning{% endif %}">
+                                        {{ grade.letter_grade }}
+                                    </span>
+                                    {% else %}
+                                    <span class="text-muted">Pending</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="{ url 'course_grade_detail' grade.id %}" class="btn btn-sm btn-info"><i
+                                            class="bi bi-graph-up"></i> Details</a>
+                                    {% if grade.can_appeal %}
+                                    <a href="{ url 'grade_appeal' grade.id %}"
+                                        class="btn btn-sm btn-outline-secondary"><i class="bi bi-pen"></i> Appeal</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="7" class="text-center py-3">No grade records found for this term.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Cards & Transcripts -->
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="bi bi-file-earmark-text me-2"></i>Report Cards</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Term</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for report in report_cards %}
+                                    <tr>
+                                        <td>{{ report.term.name }}</td>
+                                        <td>{{ report.generated_date }}</td>
+                                        <td>
+                                            <a href="{ url 'view_report_card' report.id %}"
+                                                class="btn btn-sm btn-primary"><i class="bi bi-eye"></i> View</a>
+                                            <a href="{ url 'download_report_card' report.id %}"
+                                                class="btn btn-sm btn-secondary"><i class="bi bi-download"></i>
+                                                Download</a>
+                                        </td>
+                                    </tr>
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="3" class="text-center py-3">No report cards available.</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <div class="card h-100">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="bi bi-file-earmark-pdf me-2"></i>Official Transcripts</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="transcript-info mb-3">
+                            <p>Your official transcript contains your complete academic record at AbrayTech.</p>
+                            <div class="alert alert-info">
+                                <i class="bi bi-info-circle"></i> Transcript requests typically take 2-3 business days
+                                to process.
+                            </div>
+                        </div>
+
+                        <div class="transcript-actions mb-4">
+                            <a href="{ url 'request_transcript' %}" class="btn btn-primary"><i
+                                    class="bi bi-file-earmark-arrow-down"></i> Request Official Transcript</a>
+                            <a href="{ url 'download_unofficial_transcript' %}" class="btn btn-outline-secondary"><i
+                                    class="bi bi-download"></i> Download Unofficial Transcript</a>
+                        </div>
+
+                        <div class="transcript-history">
+                            <h6>Recent Transcript Requests</h6>
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Date Requested</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for request in transcript_requests %}
+                                        <tr>
+                                            <td>{{ request.requested_date }}</td>
+                                            <td>
+                                                {% if request.status == 'completed' %}
+                                                <span class="badge bg-success">Completed</span>
+                                                {% elif request.status == 'processing' %}
+                                                <span class="badge bg-warning">Processing</span>
+                                                {% else %}
+                                                <span class="badge bg-secondary">Pending</span>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                        {% empty %}
+                                        <tr>
+                                            <td colspan="2" class="text-center">No recent requests</td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade Appeals Section -->
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Grade Appeal Requests</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Course</th>
+                                <th>Submission Date</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appeal in grade_appeals %}
+                            <tr>
+                                <td>{{ appeal.course.name }}</td>
+                                <td>{{ appeal.submitted_date }}</td>
+                                <td>{{ appeal.reason|truncatechars:50 }}</td>
+                                <td>
+                                    {% if appeal.status == 'approved' %}
+                                    <span class="badge bg-success">Approved</span>
+                                    {% elif appeal.status == 'denied' %}
+                                    <span class="badge bg-danger">Denied</span>
+                                    {% else %}
+                                    <span class="badge bg-warning">Pending</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if appeal.response %}
+                                    <button type="button" class="btn btn-sm btn-info" data-bs-toggle="modal"
+                                        data-bs-target="#appealResponse{{ appeal.id }}">
+                                        <i class="bi bi-eye"></i> View Response
+                                    </button>
+
+                                    <!-- Modal for Appeal Response -->
+                                    <div class="modal fade" id="appealResponse{{ appeal.id }}" tabindex="-1"
+                                        aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Appeal Response</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p><strong>Course:</strong> {{ appeal.course.name }}</p>
+                                                    <p><strong>Your Request:</strong> {{ appeal.reason }}</p>
+                                                    <p><strong>Instructor Response:</strong> {{ appeal.response }}</p>
+                                                    {% if appeal.status == 'approved' %}
+                                                    <p><strong>Grade Change:</strong> From {{ appeal.original_grade }}
+                                                        to {{ appeal.new_grade }}</p>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-bs-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <span class="text-muted">No response yet</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="5" class="text-center py-3">No grade appeal requests found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
