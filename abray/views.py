@@ -42,6 +42,8 @@ def grade_reports(request):
 def attendance(request):
     return render(request, 'user/attendance.html')
 
+def events(request):
+    return render(request, 'events.html')
 
 def register(request):
     if request.user.is_authenticated:

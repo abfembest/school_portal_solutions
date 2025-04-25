@@ -1,0 +1,111 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% load static %}
+
+{% block title %} Login | AbrayTech {% endblock %}
+
+{% block content %}
+<style>
+#event{
+  --background-color: rgba(40, 58, 90, 0.9);
+}
+#btn_event{
+    --background-color: rgba(40, 58, 90, 0.9);
+}
+  .animated-div {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .animated-div:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+</style>
+</style>
+ <main class="">
+<section id="event" class=" text-light container-fluid">
+    <div class="text-center pt-5 text-light">
+        <p class="h1 fw-bold">Upcoming Events</p>
+        <p class=" pt-1 text-center">Join our innovative tech workshops, coding bootcamps, and inspiring tech conferences designed for <br> you learners and professionals alike</p>
+    </div>
+    
+    </section>
+    <section class="text-center container-fluid">
+        <h1 class="fw-bold">Tech Events Calender</h1>
+        <p class="text-center">Expand your knowledge, build valuable skills, and connect with <br> industry experts through our range of educational and interactive events.</p>
+    </section>
+    <div class="container-fluid mt-3">
+        
+        <div class="row justify-content-center gap-5">
+          <div class="col-sm-5 p-3  rounded-5 card shadow-lg animated-div">
+            <img src="{% static 'assets/img/python_training.png' %}" alt="" class="card-img-top rounded-4">
+            <div class="card-body">
+                <p class="text-info fw-bold">May 15, 2025 | 10:00 AM - 4:00 PM</p>
+                <h4 class="card-text">Python Coding Bootcamp for Teens</h4>
+                <p class="ms-auto">A one-day intensive workshop for teens aged 13-16 to learn Python programming fundamentals through
+                    hands-on projects.</p>
+                <button id=" btn_event" class=" btn btn-sm btn-outline-secondary mx-auto d-block">
+                    <p class="mt-1">Register Now</p>
+                </button>
+    
+            </div>
+          </div>
+          <div class="col-sm-5 p-3 rounded-5 card shadow-lg animated-div">
+            <img src="{% static 'assets/img/learn_at_your_pace.jpeg' %}" alt="" class="card-img-top rounded-4">
+            <div class="card-body">
+                <p class="text-info fw-bold">June 5-7, 2025 | 9:00 AM - 3:00 PM</p>
+                <h4 class="card-text">Web Design Summer Camp</h4>
+                <p>A three-day camp where children aged 10-14 will learn HTML, CSS, and basic JavaScript to build their own websites.</p>
+                <button class=" btn mx-auto d-block btn-outline-secondary btn-sm" id="event">
+                    <p class="mt-2">Register Now</p>
+                </button>
+    
+            </div>
+          </div>
+        </div>
+      
+      <div class="row justify-content-center gap-5 mt-5 mb-3">
+        <div class="col-sm-5 p-3  rounded-5 card shadow-lg animated-div">
+          <img src="{% static 'assets/img/cybersecurity.jpeg' %}" alt="" class="card-img-top rounded-4">
+          <div class="card-body">
+              <p class="text-info fw-bold">June 20, 2025 | 5:00 PM - 8:00 PM</p>
+              <h4 class="card-text">Cybersecurity Awareness Workshop</h4>
+              <p class="ms-auto">An interactive session teaching children and parents about online safety, privacy, and responsible internet usage.</p>
+              <button id=" btn_event" class=" btn btn-sm btn-outline-secondary mx-auto d-block">
+                  <p class="mt-1">Register Now</p>
+              </button>
+  
+          </div>
+        </div>
+        <div class="col-sm-5 p-3 rounded-5 card shadow-lg animated-div">
+          <img src="{% static 'assets/img/game_dev.jpeg' %}" alt="" class="card-img-top rounded-4">
+          <div class="card-body">
+              <p class="text-info fw-bold">July 10, 2025 | 10:00 AM - 12:00 PM</p>
+              <h4 class="card-text">Intro to Game Design</h4>
+              <p>A beginner-friendly workshop for children aged 9-12 to create their first video game using Scratch programming.</p>
+              <button class=" btn mx-auto d-block btn-outline-secondary btn-sm" id="event">
+                  <p class="mt-1">Register Now</p>
+              </button>
+  
+          </div>
+        </div>
+      </div>
+    </div>
+</main>
+    <!-- <section class="  container">
+        <main class="row gap-3">
+        <div class="col-sm-6">
+           
+    
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <img src="{% static 'assets/img/hero-img.jpg' %}" alt="" class="card-img-top">
+            <p class="card-title">May 15 2025 | 10:00 AM - 4:00 PM</p>
+            
+        </div>
+    </main>
+    </section> -->
+
+
+{% endblock %}
