@@ -1,0 +1,145 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Academic Calendar Setup | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Academic Calendar Setup</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="academic-calendar-setup" class="academic-calendar-setup-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Academic Calendar Setup</h2>
+            <p>Set up and manage the school's academic calendar, including term dates, holidays, and exam schedules.</p>
+        </div>
+
+        <div class="row">
+            <!-- Term Dates Setup -->
+            <div class="col-md-6">
+                <h4>Set Term Dates</h4>
+                <form method="post" action="{ url 'set_term_dates' %}" class="bg-white shadow-sm p-4 rounded">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="term-name">Term Name</label>
+                        <input type="text" class="form-control" id="term-name" name="term_name" placeholder="Enter term name (e.g., First Term)" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="start-date">Start Date</label>
+                        <input type="date" class="form-control" id="start-date" name="start_date" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="end-date">End Date</label>
+                        <input type="date" class="form-control" id="end-date" name="end_date" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Set Term Dates</button>
+                </form>
+            </div>
+
+            <!-- Holidays Setup -->
+            <div class="col-md-6">
+                <h4>Set Holidays</h4>
+                <form method="post" action="{ url 'set_holidays' %}" class="bg-white shadow-sm p-4 rounded">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="holiday-name">Holiday Name</label>
+                        <input type="text" class="form-control" id="holiday-name" name="holiday_name" placeholder="Enter holiday name (e.g., Christmas Break)" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="holiday-date">Holiday Date</label>
+                        <input type="date" class="form-control" id="holiday-date" name="holiday_date" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Set Holiday</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="row mt-4">
+            <!-- Exam Schedule Setup -->
+            <div class="col-md-12">
+                <h4>Set Exam Schedules</h4>
+                <form method="post" action="{ url 'set_exam_schedule' %}" class="bg-white shadow-sm p-4 rounded">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="exam-name">Exam Name</label>
+                        <input type="text" class="form-control" id="exam-name" name="exam_name" placeholder="Enter exam name (e.g., Mid Term Exams)" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exam-date">Exam Date</label>
+                        <input type="date" class="form-control" id="exam-date" name="exam_date" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="exam-duration">Exam Duration (in hours)</label>
+                        <input type="number" class="form-control" id="exam-duration" name="exam_duration" min="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Set Exam Schedule</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Existing Calendar Items List -->
+        <div class="mt-5">
+            <h4>Existing Calendar Items</h4>
+            <div class="row">
+                <!-- Term Dates List -->
+                <div class="col-md-4">
+                    <h5>Term Dates</h5>
+                    <ul class="list-group">
+                        {% for term in terms %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ term.name }}</strong> - {{ term.start_date }} to {{ term.end_date }}
+                            <a href="{ url 'delete_term' term.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No term dates available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Holidays List -->
+                <div class="col-md-4">
+                    <h5>Holidays</h5>
+                    <ul class="list-group">
+                        {% for holiday in holidays %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ holiday.name }}</strong> - {{ holiday.date }}
+                            <a href="{ url 'delete_holiday' holiday.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No holidays available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Exam Schedules List -->
+                <div class="col-md-4">
+                    <h5>Exam Schedules</h5>
+                    <ul class="list-group">
+                        {% for exam in exams %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ exam.name }}</strong> - {{ exam.date }} ({{ exam.duration }} hours)
+                            <a href="{ url 'delete_exam' exam.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No exam schedules available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

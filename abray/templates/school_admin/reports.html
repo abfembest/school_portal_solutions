@@ -1,0 +1,90 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Reports & Analytics | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Reports & Analytics</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="reports-analytics" class="reports-analytics-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Reports & Analytics</h2>
+            <p>View and analyze various reports, including student performance, attendance, and financial records.</p>
+        </div>
+
+        <div class="row">
+            <!-- Performance Reports Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Performance Reports</h5>
+                        <p class="card-text">Generate reports on student performance in exams, assignments, and overall grades.</p>
+                        <a href="{ url 'performance_reports' %}" class="btn btn-primary w-100">View Reports</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Reports Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Attendance Reports</h5>
+                        <p class="card-text">View detailed reports on student attendance, absences, and attendance trends.</p>
+                        <a href="{ url 'attendance_reports' %}" class="btn btn-primary w-100">View Reports</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Reports Section -->
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Financial Reports</h5>
+                        <p class="card-text">Monitor school finances, including fees collection, scholarships, and transaction history.</p>
+                        <a href="{ url 'financial_reports' %}" class="btn btn-primary w-100">View Reports</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analytics Section -->
+        <div class="row mt-4">
+            <!-- Performance Analytics -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Student Performance Analytics</h5>
+                        <p class="card-text">View graphs and charts showing overall student performance in different subjects.</p>
+                        <a href="{ url 'performance_analytics' %}" class="btn btn-secondary w-100">View Analytics</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Attendance Analytics -->
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Attendance Analytics</h5>
+                        <p class="card-text">Analyze attendance data with visual representations, such as attendance rate charts.</p>
+                        <a href="{ url 'attendance_analytics' %}" class="btn btn-secondary w-100">View Analytics</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

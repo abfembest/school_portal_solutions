@@ -201,3 +201,34 @@ def payment(request):
 
 def announcements(request):
     return render(request, 'parent/announcements.html')
+
+#Admin Views
+def admin_dashboard(request):
+    return render(request, 'school_admin/dashboard.html')
+
+def manage_users(request):
+    return render(request, 'school_admin/manage_users.html')
+
+def courses(request):
+    return render(request, 'school_admin/course_classes.html')
+
+def curriculum(request):
+    return render(request, 'school_admin/curriculum.html')
+
+def calendar(request):
+    return render(request, 'school_admin/calendar.html')
+
+def analytics(request):
+    return render(request, 'school_admin/reports.html')
+
+def attendance(request):
+    return render(request, 'school_admin/attendance.html')
+
+def communications(request):
+    return render(request, 'school_admin/communications.html')
+
+def finance_fees(request):
+    return render(request, 'school_admin/finance_fees.html')
+
+def document_management(request):
+    return render(request, 'school_admin/document_management.html')

@@ -1,0 +1,84 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Admin Dashboard | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Admin Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="admin-dashboard" class="admin-dashboard section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Admin Dashboard</h2>
+            <p>Manage and overview school operations efficiently.</p>
+        </div>
+
+        <!-- Quick Stats -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <h4>Total Students</h4>
+                    <p>{{ total_students }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <h4>Total Teachers</h4>
+                    <p>{{ total_teachers }}</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stat-box">
+                    <h4>Total Courses</h4>
+                    <p>{{ total_courses }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts -->
+        <div class="alerts mt-4">
+            <h4>Recent Alerts</h4>
+            <ul class="list-group">
+                {% for alert in alerts %}
+                <li class="list-group-item">
+                    <strong>{{ alert.title }}</strong> - <em>{{ alert.date|date:"M d, Y" }}</em>
+                    <p>{{ alert.description }}</p>
+                    <a href="{ url 'view_alert' alert.id %}" class="btn btn-info">View Details</a>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No new alerts.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Latest Activities -->
+        <div class="latest-activities mt-4">
+            <h4>Recent Activities</h4>
+            <ul class="list-group">
+                {% for activity in activities %}
+                <li class="list-group-item">
+                    <strong>{{ activity.title }}</strong> - <em>{{ activity.date|date:"M d, Y" }}</em>
+                    <p>{{ activity.details }}</p>
+                    <a href="{ url 'view_activity' activity.id %}" class="btn btn-primary">View Details</a>
+                </li>
+                {% empty %}
+                <li class="list-group-item">No recent activities available.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

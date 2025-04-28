@@ -36,6 +36,17 @@ urlpatterns = [
     path('p/payment', views.payment, name="payment"),
     path('p/notice', views.announcements, name="announcements"),
 
+    path('a/home', views.admin_dashboard, name="admin_dashboard"),
+    path('a/users', views.manage_users, name="manage_users"),
+    path('a/course', views.courses, name="courses_classes"),
+    path('a/curriculum', views.curriculum, name="curriculum"),
+    path('a/calendar', views.calendar, name="calendar"),
+    path('a/analytics', views.analytics, name="analytics"),
+    path('a/attendance', views.attendance, name="attendance"),
+    path('a/communications', views.communications, name="communications"),
+    path('a/finance_fees', views.finance_fees, name="finance_fees"),
+    path('a/document_management', views.document_management, name="document_management"),
+
     path('account_settings', views.account_settings, name="account_settings"),
     path('register', views.register, name='register'),
     path('login', views.login, name='login'),

@@ -1,0 +1,90 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Document Management | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Document Management</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="document-management" class="document-management-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Document Management</h2>
+            <p>Manage all official documents such as certificates, ID cards, and letters for students and staff.</p>
+        </div>
+
+        <!-- Document Categories -->
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Certificates</h5>
+                        <p class="card-text">Issue and manage certificates for students upon graduation or other achievements.</p>
+                        <a href="{ url 'manage_certificates' %}" class="btn btn-primary w-100">Manage Certificates</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">ID Cards</h5>
+                        <p class="card-text">Generate, issue, and track student and staff ID cards.</p>
+                        <a href="{ url 'manage_id_cards' %}" class="btn btn-primary w-100">Manage ID Cards</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Official Letters</h5>
+                        <p class="card-text">Create, issue, and manage official school letters for students and staff.</p>
+                        <a href="{ url 'manage_official_letters' %}" class="btn btn-primary w-100">Manage Letters</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bulk Document Upload Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Bulk Document Upload</h5>
+                        <p class="card-text">Upload documents in bulk, such as certificates, letters, or ID card templates for all students or staff at once.</p>
+                        <a href="{ url 'bulk_document_upload' %}" class="btn btn-warning w-100">Upload Documents</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Document Reports Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Document Reports & Analytics</h5>
+                        <p class="card-text">Generate reports on document issuance, including ID cards, certificates, and letters.</p>
+                        <a href="{ url 'document_reports' %}" class="btn btn-secondary w-100">Generate Reports</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

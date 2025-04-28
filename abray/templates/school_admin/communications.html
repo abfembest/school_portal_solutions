@@ -1,0 +1,89 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Communication Center | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Communication Center</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="communication-center" class="communication-center-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Communication Center</h2>
+            <p>Send announcements and bulk messages to students, parents, and teachers directly from this section.</p>
+        </div>
+
+        <!-- Send Announcement Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Send Announcement</h5>
+                        <p class="card-text">Send important school-wide announcements to students, parents, and teachers.</p>
+                        <a href="{ url 'send_announcement' %}" class="btn btn-primary w-100">Send Announcement</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Bulk Messages</h5>
+                        <p class="card-text">Send personalized bulk messages to students, parents, and staff members.</p>
+                        <a href="{ url 'send_bulk_messages' %}" class="btn btn-primary w-100">Send Bulk Messages</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message History Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Message History</h5>
+                        <p class="card-text">View a history of previously sent messages, including announcements and bulk communications.</p>
+                        <a href="{ url 'message_history' %}" class="btn btn-secondary w-100">View Message History</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message Templates Section -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Message Templates</h5>
+                        <p class="card-text">Create and manage predefined message templates for quicker communication.</p>
+                        <a href="{ url 'message_templates' %}" class="btn btn-secondary w-100">Manage Templates</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Scheduled Messages</h5>
+                        <p class="card-text">Schedule messages to be sent at a specific date and time.</p>
+                        <a href="{ url 'schedule_message' %}" class="btn btn-secondary w-100">Schedule Message</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Curriculum Management | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Curriculum Management</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="curriculum-management" class="curriculum-management-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Curriculum Management</h2>
+            <p>Manage course syllabi and update course modules efficiently.</p>
+        </div>
+
+        <div class="row">
+            <!-- Upload Syllabi Form -->
+            <div class="col-md-6">
+                <h4>Upload Syllabi</h4>
+                <form method="post" enctype="multipart/form-data" action="{ url 'upload_syllabus' %}" class="bg-white shadow-sm p-4 rounded">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="course">Select Course</label>
+                        <select class="form-control" id="course" name="course" required>
+                            <option value="">Select Course</option>
+                            {% for course in courses %}
+                            <option value="{{ course.id }}">{{ course.name }}</option>
+                            {% empty %}
+                            <option>No courses available</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="syllabus">Upload Syllabus (PDF/Word)</label>
+                        <input type="file" class="form-control" id="syllabus" name="syllabus" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Upload Syllabus</button>
+                </form>
+            </div>
+
+            <!-- Update Course Modules -->
+            <div class="col-md-6">
+                <h4>Update Course Modules</h4>
+                <form method="post" action="{ url 'update_modules' %}" class="bg-white shadow-sm p-4 rounded">
+                    {% csrf_token %}
+                    <div class="form-group mb-3">
+                        <label for="module-course">Select Course</label>
+                        <select class="form-control" id="module-course" name="course" required>
+                            <option value="">Select Course</option>
+                            {% for course in courses %}
+                            <option value="{{ course.id }}">{{ course.name }}</option>
+                            {% empty %}
+                            <option>No courses available</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="module-title">Module Title</label>
+                        <input type="text" class="form-control" id="module-title" name="module_title" placeholder="Enter module title" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="module-description">Module Description</label>
+                        <textarea class="form-control" id="module-description" name="module_description" rows="4" placeholder="Enter module description" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Update Module</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Existing Syllabi & Modules List -->
+        <div class="mt-5">
+            <h4>Existing Syllabi & Modules</h4>
+            <div class="row">
+                <!-- Syllabi List -->
+                <div class="col-md-6">
+                    <h5>Syllabi</h5>
+                    <ul class="list-group">
+                        {% for syllabus in syllabi %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <a href="{{ syllabus.file.url }}" target="_blank">{{ syllabus.course.name }} - {{ syllabus.file.name }}</a>
+                            <a href="{ url 'delete_syllabus' syllabus.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No syllabi available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <!-- Modules List -->
+                <div class="col-md-6">
+                    <h5>Course Modules</h5>
+                    <ul class="list-group">
+                        {% for module in modules %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <strong>{{ module.course.name }} - {{ module.title }}</strong>
+                            <a href="{ url 'edit_module' module.id %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{ url 'delete_module' module.id %}" class="btn btn-danger btn-sm">Delete</a>
+                        </li>
+                        {% empty %}
+                        <li class="list-group-item">No modules available</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
