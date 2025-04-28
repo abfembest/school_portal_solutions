@@ -82,8 +82,8 @@
             
             {% if user.is_authenticated %}
                 <div class="user-account dropdown d-none d-md-inline-block btn-getstarted">
-                    <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown">
-                        <i class="bi bi-person-circle"></i> {{ user.username }}
+                    <a href="#" class="dropdown-toggle text-white" data-bs-toggle="dropdown">
+                        <i class="bi bi-person-circle text-white"></i> {{ user.username }}
                         {% if unread_messages_count %}
                             <span class="badge bg-danger">{{ unread_messages_count }}</span>
                         {% endif %}

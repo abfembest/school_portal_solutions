@@ -1,0 +1,52 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} School Calendar | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">School Calendar</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="school-calendar" class="school-calendar section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>School Calendar</h2>
+            <p>Stay updated on school holidays, events, and exam schedules.</p>
+        </div>
+
+        <div class="row gy-4">
+            {% for event in school_calendar %}
+            <div class="col-lg-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ event.title }}</h5>
+                        <p class="small text-muted">
+                            <i class="bi bi-calendar-event"></i> {{ event.date|date:"M d, Y" }}
+                        </p>
+                        <p class="card-text">{{ event.description|truncatechars:100 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    No upcoming events available at the moment.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endblock %}

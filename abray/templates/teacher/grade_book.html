@@ -1,0 +1,100 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} Gradebook | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'teacher_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Gradebook</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="gradebook" class="gradebook section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Gradebook</h2>
+            <p>Enter grades and track student performance.</p>
+        </div>
+
+        <div class="row gy-4">
+            <!-- Select Class and Assignment -->
+            <div class="col-lg-12">
+                <div class="gradebook-filters p-4 border rounded bg-light">
+                    <form method="get" class="php-email-form">
+                        <div class="row gy-3">
+                            <div class="col-md-5">
+                                <label for="class" class="form-label">Select Class</label>
+                                <select name="class" id="class" class="form-control" required>
+                                    {% for cls in classes %}
+                                        <option value="{{ cls.id }}">{{ cls.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-5">
+                                <label for="assignment" class="form-label">Select Assignment</label>
+                                <select name="assignment" id="assignment" class="form-control" required>
+                                    {% for assignment in assignments %}
+                                        <option value="{{ assignment.id }}">{{ assignment.title }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">Load Students</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Students Table -->
+            <div class="col-lg-12">
+                <div class="gradebook-table mt-4 p-4 border rounded bg-light">
+                    <h4>Enter Grades</h4>
+                    {% if students %}
+                        <form method="post" class="php-email-form">
+                            {% csrf_token %}
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>Student Name</th>
+                                            <th>Score</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for student in students %}
+                                            <tr>
+                                                <td>{{ student.first_name }} {{ student.last_name }}</td>
+                                                <td>
+                                                    <input type="number" name="grades_{{ student.id }}" class="form-control" min="0" max="100" placeholder="Enter score" value="{{ student.grade.score|default:'' }}">
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center pt-3">
+                                <button type="submit" class="btn btn-success w-50">Save Grades</button>
+                            </div>
+                        </form>
+                    {% else %}
+                        <p class="text-muted">Select a class and assignment to load students.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}

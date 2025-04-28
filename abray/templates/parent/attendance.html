@@ -1,0 +1,63 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} Attendance Records | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Attendance Records</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="attendance-records" class="attendance-records section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Attendance Records</h2>
+            <p>Review your child's daily attendance, absences, and excuses.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+                <thead class="table-primary">
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Remarks</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in attendance_records %}
+                    <tr>
+                        <td>{{ record.date|date:"M d, Y" }}</td>
+                        <td>
+                            {% if record.status == 'Present' %}
+                                <span class="badge bg-success">Present</span>
+                            {% elif record.status == 'Absent' %}
+                                <span class="badge bg-danger">Absent</span>
+                            {% elif record.status == 'Excused' %}
+                                <span class="badge bg-warning text-dark">Excused</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ record.remarks|default:"-" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-center">No attendance records available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

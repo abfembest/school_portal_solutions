@@ -1,0 +1,52 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} Messages | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Messages</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="messages" class="messages section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Messages</h2>
+            <p>View your inbox for communication from teachers and admin.</p>
+        </div>
+
+        <div class="message-list">
+            {% for message in messages %}
+            <div class="message-item">
+                <div class="message-header">
+                    <strong>{{ message.sender_name }}</strong> 
+                    <span class="message-date">{{ message.date|date:"M d, Y" }}</span>
+                </div>
+                <div class="message-body">
+                    <p>{{ message.subject }}</p>
+                    <p>{{ message.body|truncatewords:20 }}</p>
+                </div>
+                <div class="message-actions">
+                    <a href="{% url 'view_message' message.id %}" class="btn btn-primary">Read More</a>
+                </div>
+            </div>
+            {% empty %}
+            <div class="no-messages">
+                <p>No messages available at the moment.</p>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endblock %}

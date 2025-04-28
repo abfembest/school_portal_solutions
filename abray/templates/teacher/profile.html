@@ -1,0 +1,109 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} My Profile | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'teacher_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Profile</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="my-profile" class="my-profile section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>My Profile</h2>
+            <p>Manage your personal information, office hours, and password.</p>
+        </div>
+
+        <div class="row gy-4">
+            <!-- Sidebar Profile Info -->
+            <div class="col-lg-4">
+                <div class="card shadow-sm p-4 text-center">
+                    <img src="{% static 'assets/img/user.png' %}" class="img-fluid rounded-circle mb-3" alt="User Image" width="150">
+                    <h5>{{ user.first_name }} {{ user.last_name }}</h5>
+                    <p class="text-muted">{{ user.email }}</p>
+                    <hr>
+                    <p><strong>Office Hours:</strong><br>
+                        {% if user.profile.office_hours %}
+                            {{ user.profile.office_hours }}
+                        {% else %}
+                            Not Set
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Main Content Forms -->
+            <div class="col-lg-8">
+                <div class="card shadow-sm p-4">
+
+                    <!-- Personal Info Form -->
+                    <h4 class="mb-4">Update Personal Information</h4>
+                    <form method="post" action="{ url 'update_profile' %}" class="php-email-form">
+                        {% csrf_token %}
+                        <div class="row gy-3">
+                            <div class="col-md-6">
+                                <label for="first_name" class="pb-2">First Name</label>
+                                <input type="text" name="first_name" id="first_name" class="form-control" value="{{ user.first_name }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last_name" class="pb-2">Last Name</label>
+                                <input type="text" name="last_name" id="last_name" class="form-control" value="{{ user.last_name }}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="pb-2">Email Address</label>
+                                <input type="email" name="email" id="email" class="form-control" value="{{ user.email }}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="office_hours" class="pb-2">Office Hours</label>
+                                <textarea name="office_hours" id="office_hours" class="form-control" rows="3">{{ user.profile.office_hours }}</textarea>
+                                <small class="text-muted">Example: Mon-Fri, 10:00AM - 2:00PM</small>
+                            </div>
+                            <div class="col-md-12 text-center pt-3">
+                                <button type="submit" class="btn btn-primary w-100">Save Changes</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <hr class="my-5">
+
+                    <!-- Change Password Form -->
+                    <h4 class="mb-4">Change Password</h4>
+                    <form method="post" action="{ url 'change_password' %}" class="php-email-form">
+                        {% csrf_token %}
+                        <div class="row gy-3">
+                            <div class="col-md-12">
+                                <label for="current_password" class="pb-2">Current Password</label>
+                                <input type="password" name="current_password" id="current_password" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="new_password" class="pb-2">New Password</label>
+                                <input type="password" name="new_password" id="new_password" class="form-control" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="confirm_password" class="pb-2">Confirm New Password</label>
+                                <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                            </div>
+                            <div class="col-md-12 text-center pt-3">
+                                <button type="submit" class="btn btn-warning w-100">Update Password</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

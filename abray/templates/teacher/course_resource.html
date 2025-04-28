@@ -1,0 +1,113 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% block title %} Course Resources | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'teacher_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Course Resources</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="course-resources" class="course-resources section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Course Resources</h2>
+            <p>Upload slides, videos, and reference materials for your students.</p>
+        </div>
+
+        <div class="row gy-4">
+            <div class="col-lg-12">
+                <div class="resource-upload-form p-4 border rounded bg-light">
+                    <form method="post" enctype="multipart/form-data" class="php-email-form">
+                        {% csrf_token %}
+                        <div class="row gy-3">
+                            <div class="col-md-6">
+                                <label for="class" class="form-label">Select Class</label>
+                                <select name="class_id" id="class" class="form-control" required>
+                                    {% for class in assigned_classes %}
+                                        <option value="{{ class.id }}">{{ class.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="resource_type" class="form-label">Resource Type</label>
+                                <select name="resource_type" id="resource_type" class="form-control" required>
+                                    <option value="" disabled selected>-- Select --</option>
+                                    <option value="slide">Slide (PDF/PPT)</option>
+                                    <option value="video">Video (MP4)</option>
+                                    <option value="reference">Reference Material (DOC/PDF)</option>
+                                </select>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="title" class="form-label">Title</label>
+                                <input type="text" name="title" id="title" class="form-control" placeholder="Enter resource title" required>
+                            </div>
+
+                            <div class="col-md-12">
+                                <label for="file" class="form-label">Upload File</label>
+                                <input type="file" name="file" id="file" class="form-control" required>
+                            </div>
+
+                            <div class="col-md-12 text-center pt-4">
+                                <button type="submit" class="btn btn-primary w-50">Upload Resource</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Uploaded Resources List -->
+            <div class="col-lg-12">
+                <div class="uploaded-resources p-4 mt-4 border rounded bg-white">
+                    <h4>Uploaded Resources</h4>
+                    {% if uploaded_resources %}
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Class</th>
+                                        <th>Type</th>
+                                        <th>Uploaded On</th>
+                                        <th>Download</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for resource in uploaded_resources %}
+                                        <tr>
+                                            <td>{{ resource.title }}</td>
+                                            <td>{{ resource.class_assigned.name }}</td>
+                                            <td>{{ resource.get_resource_type_display }}</td>
+                                            <td>{{ resource.uploaded_at|date:"M d, Y" }}</td>
+                                            <td>
+                                                <a href="{{ resource.file.url }}" class="btn btn-sm btn-outline-primary" target="_blank">Download</a>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <p class="text-muted">No resources uploaded yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{% endblock %}
