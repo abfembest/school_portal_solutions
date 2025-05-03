@@ -1,12 +1,111 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from django.contrib.auth.models import User
 from django.contrib import messages
-from .models import Profile, Course, Country
+from django.db.models import Avg, Count
+from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+from .models import Profile, Course, Country, CourseModule, Lesson, Instructor, Review, Category
 
 # Create your views here.
 def home(request):
     return render(request, 'home.html')
+
+def course(request):
+    """View to display all active courses"""
+    courses = Course.objects.all()
+    
+    # # Filter by category if provided
+    # category_slug = request.GET.get('category')
+    # if category_slug:
+    #     category = get_object_or_404(Category, slug=category_slug)
+    #     courses = courses.filter(category=category)
+    
+    # # Filter by difficulty level if provided
+    # difficulty = request.GET.get('difficulty')
+    # if difficulty:
+    #     courses = courses.filter(difficulty_level=difficulty)
+        
+    # Get all categories for the filter sidebar
+    categories = Category.objects.all()
+    
+    context = {
+        'courses': courses,
+        'categories': categories,
+    }
+    return render(request, 'courses.html', context)
+
+def course_detail(request, slug):
+    """View to display a single course with all its details"""
+    course = get_object_or_404(Course, slug=slug, is_active=True)
+    
+    # Get course modules and their lessons
+    modules = CourseModule.objects.filter(course=course).prefetch_related('lessons')
+    
+    # Get course instructor
+    instructor = Instructor.objects.get(user = course.instructor)
+    # instructor = get_object_or_404(Instructor, user=course.instructor)
+    print('This is it', instructor)
+    
+    # Get course reviews
+    reviews = Review.objects.filter(course=course)
+    review_count = reviews.count()
+    
+    # Calculate average rating
+    avg_rating = reviews.aggregate(Avg('rating'))['rating__avg'] or 0
+    
+    # Calculate rating distribution
+    rating_distribution = {
+        5: reviews.filter(rating=5).count(),
+        4: reviews.filter(rating=4).count(),
+        3: reviews.filter(rating=3).count(), 
+        2: reviews.filter(rating=2).count(),
+        1: reviews.filter(rating=1).count()
+    }
+    
+    # Convert to percentages if there are reviews
+    if review_count > 0:
+        for rating in rating_distribution:
+            rating_distribution[rating] = int((rating_distribution[rating] / review_count) * 100)
+    
+    # Get related courses (same category, exclude current)
+    related_courses = Course.objects.filter(
+        category=course.category, 
+        is_active=True
+    ).exclude(id=course.id)[:3]
+    
+    # Check if user has this course in wishlist
+    in_wishlist = False
+    if request.user.is_authenticated:
+        in_wishlist = request.user.wishlist.filter(course=course).exists()
+    
+    context = {
+        'course': course,
+        'modules': modules,
+        'instructor': instructor,
+        'reviews': reviews[:3],  # Limit to 3 initial reviews
+        'review_count': review_count,
+        'avg_rating': avg_rating,
+        'rating_distribution': rating_distribution,
+        'related_courses': related_courses,
+        'in_wishlist': in_wishlist,
+    }
+    
+    return render(request, 'courses-details.html', context)
+
+def add_to_wishlist(request, course_id):
+    """View to add/remove a course from user's wishlist"""
+    if not request.user.is_authenticated:
+        # Handle unauthenticated users (redirect to login)
+        return redirect('login')
+    
+    course = get_object_or_404(Course, id=course_id)
+    wishlist_item, created = Wishlist.objects.get_or_create(user=request.user, course=course)
+    
+    if not created:
+        # If it already existed, remove it (toggle behavior)
+        wishlist_item.delete()
+    
+    # Redirect back to the course page
+    return redirect('course_detail', slug=course.slug)
 
 def course(request):
     course = Course.objects.all()
@@ -61,8 +160,8 @@ def register(request):
             )
 
             # Create empty profile, will be updated later with course/country
-            Country.objects.create(country = country)
-            Profile.objects.create(user=user, country = country)
+            get_country = Country.objects.create(name = country)
+            Profile.objects.create(user=user, country = get_country)
 
             messages.success(request, "Registration successful. Please login.")
             return redirect('login')

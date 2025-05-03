@@ -41,19 +41,19 @@
                     <div class="course-meta d-flex flex-wrap gap-2 gap-md-4 mb-4">
                         <div class="me-3">
                             <i class="bi bi-person text-primary me-2"></i>
-                            <span class="small">Dr. Alan Turing</span>
+                            <span class="small text-capitalize">{{course.instructor}}</span>
                         </div>
                         <div class="me-3">
                             <i class="bi bi-clock text-primary me-2"></i>
-                            <span class="small">8 weeks</span>
+                            <span class="small">{{course.duration}} weeks</span>
                         </div>
                         <div class="me-3">
                             <i class="bi bi-book text-primary me-2"></i>
-                            <span class="small">12 modules</span>
+                            <span class="small">{{course.total_modules}} modules</span>
                         </div>
                         <div class="me-3">
                             <i class="bi bi-mortarboard text-primary me-2"></i>
-                            <span class="small">Intermediate</span>
+                            <span class="small text-capitalize">{{course.difficulty_level}}</span>
                         </div>
                     </div>
 
@@ -96,14 +96,12 @@
                         <div class="tab-pane fade show active" id="overview" role="tabpanel"
                             aria-labelledby="overview-tab">
                             <h3 class="mb-4 fs-4">Course Description</h3>
-                            <p>{{course.title}} is transforming our world in remarkable ways. This
-                                comprehensive course offers an in-depth exploration of AI concepts,
-                                methodologies, and practical applications that are shaping industries today.</p>
+                            <p>{{course.title}} {{course.description}}</p>
 
-                            <p>You'll learn the fundamentals of machine learning, neural networks, and deep
+                            {% comment %} <p>You'll learn the fundamentals of machine learning, neural networks, and deep
                                 learning while gaining hands-on experience with real-world AI projects. By the
                                 end of this course, you'll have the knowledge and skills to build intelligent
-                                systems that can analyze data, recognize patterns, and make decisions.</p>
+                                systems that can analyze data, recognize patterns, and make decisions.</p> {% endcomment %}
 
                             <div class="mt-4 mt-md-5">
                                 <h4 class="mb-3 fs-5">What You'll Learn</h4>
@@ -344,31 +342,28 @@
                                         style="width: 100%; max-width: 150px; aspect-ratio: 1; object-fit: cover;">
                                 </div>
                                 <div class="col-8 col-md-9">
-                                    <h4 class="mb-1 fs-5">Dr. Alan Turing</h4>
+                                    <h4 class="mb-1 fs-5">{{course.instructor}}</h4>
                                     <p class="text-muted mb-3 small">AI Research Scientist, Ph.D. in Computer Science
                                     </p>
 
                                     <div class="mb-3 d-flex flex-wrap gap-2">
-                                        <span class="badge bg-primary me-1">10+ Years Experience</span>
-                                        <span class="badge bg-secondary me-1">250+ Students</span>
-                                        <span class="badge bg-info">15+ Courses</span>
+                                        <span class="badge bg-primary me-1">{{course.instructor.experience_years}}+ Years Experience</span>
+                                        <span class="badge bg-secondary me-1">{{course.instructor.courses_count}}+ Students</span>
+                                        <span class="badge bg-info">{{courses}}+ Courses</span>
                                     </div>
 
-                                    <p class="small">Dr. Turing is a leading expert in {{course.title}} with extensive
-                                        experience in both academic research and industry applications. He has
-                                        led AI projects at major tech companies and published numerous papers in
-                                        top-tier conferences.</p>
+                                    <p class="small">{{course.instructor}} is a leading expert in {{course.title}} {{instructor.user}}</p>
 
-                                    <p class="small">His teaching approach combines theoretical foundations with practical,
+                                    {% comment %} <p class="small">His teaching approach combines theoretical foundations with practical,
                                         hands-on exercises that prepare students for real-world AI
-                                        implementation.</p>
+                                        implementation.</p> {% endcomment %}
 
                                     <div class="social-links mt-3">
-                                        <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
+                                        <a href="{{instructor.linkedin_url}}" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
                                                 class="bi bi-linkedin"></i></a>
-                                        <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
+                                        <a href="{{instructor.twitter_url}}" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
                                                 class="bi bi-twitter"></i></a>
-                                        <a href="#" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
+                                        <a href="{{instructor.website_url}}" class="btn btn-outline-dark btn-sm rounded-circle me-2"><i
                                                 class="bi bi-globe"></i></a>
                                     </div>
                                 </div>
@@ -545,8 +540,8 @@
                         <div class="course-price mb-4">
                             <div class="d-flex align-items-center">
                                 <h3 class="price mb-0 me-2">${{course.price}}</h3>
-                                {% comment %} <span class="text-decoration-line-through text-muted">$699</span> {% endcomment %}
-                                {% comment %} <span class="ms-2 badge bg-danger">28% Off</span> {% endcomment %}
+                                <span class="text-decoration-line-through text-muted">${{course.original_price}}</span>
+                                <span class="ms-2 badge bg-danger">{{course.discount_percentage}}% Off</span>
                             </div>
                             {% comment %} <p class="text-muted small mt-1">Limited time offer | 3 days left at this price</p> {% endcomment %}
                         </div>
