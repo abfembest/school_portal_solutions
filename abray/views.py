@@ -3,7 +3,7 @@ from django.db.models import Avg, Count
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
-from .models import Profile, Course, Country, CourseModule, Lesson, Instructor, Review, Category
+from .models import Profile, Course, Country, CourseModule, Lesson, Instructor, Review, Category, Wishlist, CourseResource
 
 # Create your views here.
 def home(request):
