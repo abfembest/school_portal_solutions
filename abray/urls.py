@@ -15,6 +15,7 @@ urlpatterns = [
     path('s/grade', views.grade_reports, name="grades"),
     path('s/attendance', views.attendance, name="attendance"),
 
+    # Teacher Urls
     path('t/home', views.teacher_dashboard, name="teacher_dashboard"),
     path('t/profile', views.t_profile, name="t_profile"),
     path('t/classes', views.myclasses, name="my_classes"),
@@ -25,6 +26,7 @@ urlpatterns = [
     path('t/message', views.messaging, name="messaging"),
     path('t/course_resources', views.course_resource, name="course_resource"),
 
+    # Parent Urls
     path('p/home', views.parent_dashboard, name="parent_dashboard"),
     path('p/profile', views.p_profile, name="p_profile"),
     path('p/child_profile', views.child_profile, name="child_profile"),
@@ -36,6 +38,7 @@ urlpatterns = [
     path('p/payment', views.payment, name="payment"),
     path('p/notice', views.announcements, name="announcements"),
 
+    # Admin Urls
     path('a/home', views.admin_dashboard, name="admin_dashboard"),
     path('a/users', views.manage_users, name="manage_users"),
     path('a/course', views.courses, name="courses_classes"),
