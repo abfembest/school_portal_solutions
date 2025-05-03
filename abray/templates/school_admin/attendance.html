@@ -1,0 +1,89 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Attendance Monitoring | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Attendance Monitoring</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="attendance-monitoring" class="attendance-monitoring-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Attendance Monitoring</h2>
+            <p>Monitor and manage the attendance of all students across different classes.</p>
+        </div>
+
+        <!-- Attendance Summary Section -->
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Global Attendance Summary</h5>
+                        <p class="card-text">View a comprehensive summary of attendance trends across all students and classes.</p>
+                        <a href="{ url 'attendance_summary' %}" class="btn btn-primary w-100">View Summary</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Attendance Trends</h5>
+                        <p class="card-text">Analyze attendance patterns over time with interactive graphs and charts.</p>
+                        <a href="{ url 'attendance_trends' %}" class="btn btn-primary w-100">View Trends</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Attendance Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Detailed Attendance Records</h5>
+                        <p class="card-text">Access detailed records for each student’s daily attendance, absences, and excuses.</p>
+                        <a href="{ url 'detailed_attendance' %}" class="btn btn-secondary w-100">View Detailed Records</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Excuse Management Section -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Manage Attendance Excuses</h5>
+                        <p class="card-text">Review and approve/reject attendance excuses submitted by students.</p>
+                        <a href="{ url 'attendance_excuses' %}" class="btn btn-secondary w-100">Manage Excuses</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Download Attendance Certificates</h5>
+                        <p class="card-text">Download official attendance certificates for students school_admin/based on their attendance history.</p>
+                        <a href="{ url 'download_attendance_certificates' %}" class="btn btn-secondary w-100">Download Certificates</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

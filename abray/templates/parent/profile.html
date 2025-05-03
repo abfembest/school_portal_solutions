@@ -1,0 +1,89 @@
+{% extends 'parent/base.html' %}
+
+{% block title %} Parent Profile | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Parent Profile</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="parent-profile" class="parent-profile section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>My Profile</h2>
+            <p>Manage your personal information and emergency contacts.</p>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="profile-sidebar text-center shadow-sm p-4">
+                    <img src="{% static 'assets/img/parent-avatar.png' %}" alt="Parent Avatar" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px;">
+                    <h5 class="profile-usertitle-name">{{ parent.full_name }}</h5>
+                    <span class="text-muted">{{ parent.email }}</span>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="account-settings-content">
+                    <h3>Edit Profile Information</h3>
+                    <form method="post" class="php-email-form">
+                        {% csrf_token %}
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <label for="first-name" class="pb-2">First Name</label>
+                                <input type="text" class="form-control" name="first_name" id="first-name" value="{{ parent.first_name }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="last-name" class="pb-2">Last Name</label>
+                                <input type="text" class="form-control" name="last_name" id="last-name" value="{{ parent.last_name }}" required>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="email" class="pb-2">Email Address</label>
+                                <input type="email" class="form-control" name="email" id="email" value="{{ parent.email }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="phone" class="pb-2">Phone Number</label>
+                                <input type="text" class="form-control" name="phone" id="phone" value="{{ parent.phone }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="address" class="pb-2">Home Address</label>
+                                <input type="text" class="form-control" name="address" id="address" value="{{ parent.address }}" required>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <h4>Emergency Contacts</h4>
+                        <div class="row gy-4">
+                            <div class="col-md-6">
+                                <label for="emergency-name" class="pb-2">Contact Name</label>
+                                <input type="text" class="form-control" name="emergency_name" id="emergency-name" value="{{ parent.emergency_contact_name }}" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="emergency-phone" class="pb-2">Contact Phone</label>
+                                <input type="text" class="form-control" name="emergency_phone" id="emergency-phone" value="{{ parent.emergency_contact_phone }}" required>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 text-center pt-4">
+                            <button type="submit" class="w-100 bg-primary">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

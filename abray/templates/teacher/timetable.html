@@ -1,0 +1,62 @@
+{% extends 'teacher/base.html' %}
+
+{% block title %} Teaching Timetable | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'teacher_dashboard' %}">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Teaching Timetable</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="teaching-timetable" class="teaching-timetable section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>Teaching Timetable</h2>
+            <p>Here is your weekly schedule.</p>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered text-center align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Class</th>
+                        <th>Subject</th>
+                        <th>Location</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if timetable %}
+                        {% for session in timetable %}
+                            <tr>
+                                <td>{{ session.day }}</td>
+                                <td>{{ session.start_time }} - {{ session.end_time }}</td>
+                                <td>{{ session.class_name }}</td>
+                                <td>{{ session.subject }}</td>
+                                <td>{{ session.location }}</td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="5">No scheduled classes yet.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</section>
+{% endblock %}

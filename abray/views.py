@@ -17,31 +17,8 @@ def course_details(request):
 def course_upload(request):
     return render(request, 'course-upload.html')
 
-#User Code
-def user_dashboard(request):
-    return render(request, 'user/user_dashboard.html')
-
-def profile(request):
-    return render(request, 'user/profile.html')
-
-def account_settings(request):
-    return render(request, 'settings.html')
-
-def timetable(request):
-    return render(request, 'user/timetable.html')
-
-def mycourse(request):
-    return render(request, 'user/courses.html')
-
-def assignments(request):
-    return render(request, 'user/assignments.html')
-
-def grade_reports(request):
-    return render(request, 'user/grades&report.html')
-
-def attendance(request):
-    return render(request, 'user/attendance.html')
-
+def events(request):
+    return render(request, 'events.html')
 
 def register(request):
     if request.user.is_authenticated:
@@ -139,3 +116,118 @@ def logout(request):
 
 def password_reset(request):
     return 'Hi'
+
+#Student Views
+def user_dashboard(request):
+    return render(request, 'student/user_dashboard.html')
+
+def profile(request):
+    return render(request, 'student/profile.html')
+
+def account_settings(request):
+    return render(request, 'student/settings.html')
+
+def timetable(request):
+    return render(request, 'student/timetable.html')
+
+def mycourse(request):
+    return render(request, 'student/courses.html')
+
+def assignments(request):
+    return render(request, 'student/assignments.html')
+
+def grade_reports(request):
+    return render(request, 'student/grades&report.html')
+
+def attendance(request):
+    return render(request, 'student/attendance.html')
+
+#Teacher Views
+def teacher_dashboard(request):
+    return render(request, 'teacher/dashboard.html')
+
+def t_profile(request):
+    return render(request, 'teacher/profile.html')
+
+def myclasses(request):
+    return render(request, 'teacher/classes.html')
+
+def ttimetable(request):
+    return render(request, 'teacher/timetable.html')
+
+def m_assignment(request):
+    return render(request, 'teacher/manage_assignment.html')
+
+def grade_book(request):
+    return render(request, 'teacher/grade_book.html')
+
+def attendance_manager(request):
+    return render(request, 'teacher/attendance_manager.html')
+
+def messaging(request):
+    return render(request, 'teacher/messaging.html')
+
+def course_resource(request):
+    return render(request, 'teacher/course_resource.html')
+
+#Parent Views
+def parent_dashboard(request):
+    return render(request, 'parent/dashboard.html')
+
+def p_profile(request):
+    return render(request, 'parent/profile.html')
+
+def child_profile(request):
+    return render(request, 'parent/child_profile.html')
+
+def classwork(request):
+    return render(request, 'parent/classwork.html')
+
+def school_calendar(request):
+    return render(request, 'parent/calendar.html')
+
+def grades_report(request):
+    return render(request, 'parent/grade_reports.html')
+
+def child_attendance(request):
+    return render(request, 'parent/attendance.html')
+
+def chats(request):
+    return render(request, 'parent/messages.html')
+
+def payment(request):
+    return render(request, 'parent/payment.html')
+
+def announcements(request):
+    return render(request, 'parent/announcements.html')
+
+#Admin Views
+def admin_dashboard(request):
+    return render(request, 'school_admin/dashboard.html')
+
+def manage_users(request):
+    return render(request, 'school_admin/manage_users.html')
+
+def courses(request):
+    return render(request, 'school_admin/course_classes.html')
+
+def curriculum(request):
+    return render(request, 'school_admin/curriculum.html')
+
+def calendar(request):
+    return render(request, 'school_admin/calendar.html')
+
+def analytics(request):
+    return render(request, 'school_admin/reports.html')
+
+def attendance(request):
+    return render(request, 'school_admin/attendance.html')
+
+def communications(request):
+    return render(request, 'school_admin/communications.html')
+
+def finance_fees(request):
+    return render(request, 'school_admin/finance_fees.html')
+
+def document_management(request):
+    return render(request, 'school_admin/document_management.html')

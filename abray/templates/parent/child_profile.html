@@ -1,0 +1,60 @@
+{% extends 'parent/base.html' %}
+
+{% block title %} My Children | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">My Children</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="children-profile" class="children-profile section">
+    <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+            <h2>My Child(ren)</h2>
+            <p>View your child(ren)'s profile and academic progress.</p>
+        </div>
+
+        <div class="row gy-4">
+            {% for child in children %}
+            <div class="col-lg-4 col-md-6">
+                <div class="card shadow-sm p-3 h-100">
+                    <div class="text-center">
+                        <img src="{% static 'assets/img/child-avatar.png' %}" alt="Child Avatar" class="img-fluid rounded-circle mb-3" style="width: 100px; height: 100px;">
+                        <h5 class="card-title">{{ child.full_name }}</h5>
+                        <p class="text-muted">{{ child.class_name }}</p>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush small">
+                            <li class="list-group-item"><strong>Age:</strong> {{ child.age }}</li>
+                            <li class="list-group-item"><strong>Grade:</strong> {{ child.grade }}</li>
+                            <li class="list-group-item"><strong>Enrollment No:</strong> {{ child.enrollment_number }}</li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-center bg-white">
+                        <a href="{% url 'child_progress' child.id %}" class="btn btn-primary btn-sm">View Progress</a>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12">
+                <div class="alert alert-warning text-center">
+                    No children linked to your profile yet.
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
+{% endblock %}

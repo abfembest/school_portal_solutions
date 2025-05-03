@@ -1,0 +1,199 @@
+{% extends 'headerfooterlinks.html' %}
+
+{% load static %}
+
+{% block title %} Events | AbrayTech {% endblock %}
+
+{% block content %}
+<style>
+  /* Custom CSS for enhanced appearance */
+  .event-hero {
+    padding-top: 120px;
+    /* Space for fixed navbar */
+    background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)),
+    url('{% static "assets/img/hero-bg.jpg" %}') center/cover no-repeat;
+  }
+
+  .event-card {
+    border: none;
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+
+  .event-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .event-img-container {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+
+  .event-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+
+  .event-card:hover .event-img {
+    transform: scale(1.05);
+  }
+
+  .event-date {
+    color: #3498db;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  .event-btn {
+    background-color: transparent;
+    color: #3498db;
+    border: 2px solid #3498db;
+    border-radius: 30px;
+    padding: 8px 25px;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+
+  .event-btn:hover {
+    background-color: #3498db;
+    color: white;
+  }
+</style>
+
+
+<!-- Hero Section with proper spacing for fixed navbar -->
+<section class="event-hero text-white">
+  <div class="container text-center py-4">
+    <h1 class="display-4 fw-bold mb-3 text-white">Upcoming Events</h1>
+    <p class="lead mb-0">Join our innovative tech workshops, coding bootcamps, and inspiring tech conferences designed
+      for <br> learners and professionals alike</p>
+  </div>
+</section>
+
+<!-- Calendar Section -->
+<section class="py-5 bg-light">
+  <div class="container text-center">
+    <h2 class="fw-bold mb-3">Tech Events Calendar</h2>
+    <p class="text-muted mb-5">Expand your knowledge, build valuable skills, and connect with <br> industry experts
+      through our range of educational and interactive events.</p>
+
+    <!-- Events Cards in 3-column layout with flexbox -->
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+      <!-- Card 1 -->
+      <div class="col">
+        <div class="card event-card shadow">
+          <div class="event-img-container">
+            <img src="{% static 'assets/img/python_training.png' %}" class="event-img" alt="Python Training">
+          </div>
+          <div class="card-body p-4">
+            <p class="event-date mb-2">May 15, 2025 | 10:00 AM - 4:00 PM</p>
+            <h4 class="card-title mb-3">Python Coding Bootcamp for Teens</h4>
+            <p class="card-text text-muted">A one-day intensive workshop for teens aged 13-16 to learn Python
+              programming fundamentals through hands-on projects.</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-4 text-center">
+            <button class="event-btn">Register Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col">
+        <div class="card event-card shadow">
+          <div class="event-img-container">
+            <img src="{% static 'assets/img/learn_at_your_pace.jpeg' %}" class="event-img" alt="Web Design">
+          </div>
+          <div class="card-body p-4">
+            <p class="event-date mb-2">June 5-7, 2025 | 9:00 AM - 3:00 PM</p>
+            <h4 class="card-title mb-3">Web Design Summer Camp</h4>
+            <p class="card-text text-muted">A three-day camp where children aged 10-14 will learn HTML, CSS, and basic
+              JavaScript to build their own websites.</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-4 text-center">
+            <button class="event-btn">Register Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col">
+        <div class="card event-card shadow">
+          <div class="event-img-container">
+            <img src="{% static 'assets/img/cybersecurity.jpeg' %}" class="event-img" alt="Cybersecurity">
+          </div>
+          <div class="card-body p-4">
+            <p class="event-date mb-2">June 20, 2025 | 5:00 PM - 8:00 PM</p>
+            <h4 class="card-title mb-3">Cybersecurity Awareness Workshop</h4>
+            <p class="card-text text-muted">An interactive session teaching children and parents about online safety,
+              privacy, and responsible internet usage.</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-4 text-center">
+            <button class="event-btn">Register Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="col">
+        <div class="card event-card shadow">
+          <div class="event-img-container">
+            <img src="{% static 'assets/img/game_dev.jpeg' %}" class="event-img" alt="Game Design">
+          </div>
+          <div class="card-body p-4">
+            <p class="event-date mb-2">July 10, 2025 | 10:00 AM - 12:00 PM</p>
+            <h4 class="card-title mb-3">Intro to Game Design</h4>
+            <p class="card-text text-muted">A beginner-friendly workshop for children aged 9-12 to create their first
+              video game using Scratch programming.</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-4 text-center">
+            <button class="event-btn">Register Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5 - Additional event -->
+      <div class="col">
+        <div class="card event-card shadow">
+          <div class="event-img-container">
+            <img src="{% static 'assets/img/python_training.png' %}" class="event-img" alt="AI Workshop">
+          </div>
+          <div class="card-body p-4">
+            <p class="event-date mb-2">July 25, 2025 | 1:00 PM - 5:00 PM</p>
+            <h4 class="card-title mb-3">AI for Young Innovators</h4>
+            <p class="card-text text-muted">An exploratory workshop introducing students aged 14-18 to artificial
+              intelligence concepts and applications.</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-4 text-center">
+            <button class="event-btn">Register Now</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6 - Additional event -->
+      <div class="col">
+        <div class="card event-card shadow">
+          <div class="event-img-container">
+            <img src="{% static 'assets/img/cybersecurity.jpeg' %}" class="event-img" alt="Robotics">
+          </div>
+          <div class="card-body p-4">
+            <p class="event-date mb-2">August 12, 2025 | 9:00 AM - 1:00 PM</p>
+            <h4 class="card-title mb-3">Robotics & Engineering Day</h4>
+            <p class="card-text text-muted">A hands-on session where students will build and program simple robots while
+              learning engineering principles.</p>
+          </div>
+          <div class="card-footer bg-white border-0 pb-4 text-center">
+            <button class="event-btn">Register Now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

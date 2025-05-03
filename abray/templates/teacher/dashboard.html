@@ -1,0 +1,91 @@
+{% extends 'teacher/base.html' %}
+
+{% block title %} Teacher Dashboard | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section - Fixed with proper spacing -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Teacher Dashboard</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs Section -->
+
+<section id="teacher-dashboard" class="teacher-dashboard section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Teacher Dashboard</h2>
+            <p>Overview of your upcoming classes, grading tasks, and latest announcements.</p>
+        </div>
+
+        <div class="row gy-4">
+
+            <!-- Upcoming Classes -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm p-4">
+                    <h4 class="mb-3">Upcoming Classes</h4>
+                    {% if upcoming_classes %}
+                        <ul class="list-group list-group-flush">
+                            {% for class in upcoming_classes %}
+                                <li class="list-group-item">
+                                    <strong>{{ class.course_name }}</strong><br>
+                                    <small>{{ class.date|date:"M d, Y" }} - {{ class.start_time }} to {{ class.end_time }}</small>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No upcoming classes scheduled.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Pending Grading -->
+            <div class="col-lg-6">
+                <div class="card shadow-sm p-4">
+                    <h4 class="mb-3">Pending Grading</h4>
+                    {% if pending_grading %}
+                        <ul class="list-group list-group-flush">
+                            {% for assignment in pending_grading %}
+                                <li class="list-group-item">
+                                    <strong>{{ assignment.title }}</strong> - 
+                                    <small>{{ assignment.course_name }}</small><br>
+                                    <span class="text-muted">Submissions: {{ assignment.pending_count }}</span>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No assignments pending grading.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Announcements -->
+            <div class="col-lg-12">
+                <div class="card shadow-sm p-4 mt-4">
+                    <h4 class="mb-3">Latest Announcements</h4>
+                    {% if announcements %}
+                        <ul class="list-group list-group-flush">
+                            {% for announcement in announcements %}
+                                <li class="list-group-item">
+                                    <strong>{{ announcement.title }}</strong><br>
+                                    <small>{{ announcement.date|date:"M d, Y" }}</small>
+                                    <p class="mt-2">{{ announcement.content|truncatewords:30 }}</p>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No announcements at this time.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

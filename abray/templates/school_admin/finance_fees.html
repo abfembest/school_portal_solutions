@@ -1,0 +1,90 @@
+{% extends 'school_admin/base.html' %}
+
+{% block title %} Finance & Fees Management | AbrayTech {% endblock %}
+
+{% load static %}
+
+{% block content %}
+<!-- Breadcrumbs Section -->
+<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
+    <div class="container">
+        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Admin Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Finance & Fees Management</li>
+            </ol>
+        </nav>
+    </div>
+</section><!-- End Breadcrumbs -->
+
+<section id="finance-fees-management" class="finance-fees-management-section section">
+    <div class="container" data-aos="fade-up">
+        <div class="section-title">
+            <h2>Finance & Fees Management</h2>
+            <p>Manage fee structures, scholarships, and process payments efficiently for all students.</p>
+        </div>
+
+        <!-- Fee Structure Section -->
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Fee Structure</h5>
+                        <p class="card-text">Create and manage different fee structures for various courses and grade levels.</p>
+                        <a href="{ url 'fee_structure' %}" class="btn btn-primary w-100">Manage Fee Structure</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Scholarships & Discounts</h5>
+                        <p class="card-text">Manage scholarships and discounts for eligible students.</p>
+                        <a href="{ url 'scholarships_discounts' %}" class="btn btn-primary w-100">Manage Scholarships</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Management Section -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Student Payment Records</h5>
+                        <p class="card-text">View and track payment records for all students.</p>
+                        <a href="{ url 'payment_records' %}" class="btn btn-primary w-100">View Payment Records</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Make Payments</h5>
+                        <p class="card-text">Allow students and parents to make payments online directly.</p>
+                        <a href="{ url 'make_payments' %}" class="btn btn-primary w-100">Process Payments</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fee Reports Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">Fee Reports & Analytics</h5>
+                        <p class="card-text">Generate reports and view analytics related to fee payments, outstanding balances, and more.</p>
+                        <a href="{ url 'fee_reports' %}" class="btn btn-secondary w-100">Generate Reports</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
