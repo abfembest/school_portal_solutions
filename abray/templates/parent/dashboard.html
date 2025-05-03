@@ -5,73 +5,177 @@
 {% load static %}
 
 {% block content %}
-<!-- Breadcrumbs Section -->
-<section class="breadcrumbs-section py-5 bg-light" style="margin-top: 80px; padding-top: 20px;">
-    <div class="container">
-        <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
-            <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Parent Dashboard</li>
-            </ol>
-        </nav>
+<head>
+  <style>
+    a {
+      text-decoration: none !important;
+    }
+    .icon-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .icon-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .widget-card {
+      border-left: 5px solid var(--bs-primary);
+      background: linear-gradient(to right, #f8f9fa, #ffffff);
+      transition: 0.3s;
+    }
+    .widget-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.07);
+    }
+    .section-title h2 {
+      font-weight: 700;
+      color: var(--bs-dark);
+    }
+  </style>
+</head>
+
+<!-- Optional Breadcrumb -->
+<section class="py-4 bg-light border-bottom shadow-sm">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h5 class="mb-0 fw-semibold">Parent Dashboard</h5>
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-0 small">
+          <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+      </nav>
     </div>
-</section><!-- End Breadcrumbs -->
+  </div>
+</section>
 
-<section id="parent-dashboard" class="parent-dashboard section">
-    <div class="container" data-aos="fade-up">
+<!-- 🌟 Dashboard Icons -->
+<section class="dashboard-icons py-5">
+  <div class="container">
+    <div class="row g-4 row-cols-2 row-cols-md-4 row-cols-lg-6 text-center">
+      <div class="col">
+        <a href="{% url 'parent_dashboard' %}" class="icon-card bg-primary text-white p-4 rounded-4 d-block">
+          <i class="bi bi-house-door fs-2 mb-2"></i>
+          <div>Home</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'p_profile' %}" class="icon-card bg-success text-white p-4 rounded-4 d-block">
+          <i class="bi bi-person fs-2 mb-2"></i>
+          <div>My Profile</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'child_profile' %}" class="icon-card bg-info text-white p-4 rounded-4 d-block">
+          <i class="bi bi-people fs-2 mb-2"></i>
+          <div>Child Profile</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'classwork' %}" class="icon-card bg-warning text-white p-4 rounded-4 d-block">
+          <i class="bi bi-journal-check fs-2 mb-2"></i>
+          <div>Classwork</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'school_calendar' %}" class="icon-card bg-danger text-white p-4 rounded-4 d-block">
+          <i class="bi bi-calendar-event fs-2 mb-2"></i>
+          <div>Calendar</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'grades_report' %}" class="icon-card bg-secondary text-white p-4 rounded-4 d-block">
+          <i class="bi bi-bar-chart fs-2 mb-2"></i>
+          <div>Grades</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'child_attendance' %}" class="icon-card bg-success text-white p-4 rounded-4 d-block">
+          <i class="bi bi-check-square fs-2 mb-2"></i>
+          <div>Attendance</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'chat' %}" class="icon-card bg-primary text-white p-4 rounded-4 d-block position-relative">
+          <i class="bi bi-chat-text fs-2 mb-2"></i>
+          <div>Messages</div>
+          <span class="position-absolute top-0 end-0 badge rounded-pill bg-danger mt-2 me-2">3</span>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'payment' %}" class="icon-card bg-warning text-white p-4 rounded-4 d-block">
+          <i class="bi bi-wallet2 fs-2 mb-2"></i>
+          <div>Payment</div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'announcements' %}" class="icon-card bg-danger text-white p-4 rounded-4 d-block">
+          <i class="bi bi-megaphone fs-2 mb-2"></i>
+          <div>Notices</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <div class="section-title">
-            <h2>Parent Dashboard</h2>
-            <p>Overview of your child’s attendance, grades, and timetable.</p>
+<!-- 📊 Dashboard Overview -->
+<section id="parent-dashboard" class="parent-dashboard py-5 bg-light">
+  <div class="container">
+    <div class="section-title text-center mb-5">
+      <h2>Overview</h2>
+      <p class="text-muted">Quick summary of your child’s academic data</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Profile -->
+      <div class="col-lg-4">
+        <div class="card shadow-sm text-center border-0 p-4 bg-white h-100">
+          <img src="{% static 'assets/img/child_avatar.jpeg' %}" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px;" alt="Child">
+          <h5 class="mb-1">{{ child.full_name }}</h5>
+          <p class="text-muted mb-3">{{ child.class_name }}</p>
+          <span class="badge bg-info">Active</span>
         </div>
+      </div>
 
-        <div class="row gy-4">
-            <!-- Child Summary Card -->
-            <div class="col-lg-4">
-                <div class="card text-center shadow-sm p-3">
-                    <img src="{% static 'assets/img/child-avatar.png' %}" alt="Child Avatar" class="img-fluid rounded-circle mb-3" style="width: 120px; height: 120px;">
-                    <h5 class="card-title">{{ child.full_name }}</h5>
-                    <p class="text-muted">{{ child.class_name }}</p>
-                </div>
+      <!-- Widgets -->
+      <div class="col-lg-8">
+        <div class="row g-4">
+          <!-- Attendance -->
+          <div class="col-md-4">
+            <div class="widget-card p-4 rounded bg-white shadow-sm text-center h-100 border-start border-success border-4">
+              <h6 class="text-muted">Attendance</h6>
+              <div class="fs-3 fw-bold text-success">{{ child.attendance_percentage }}%</div>
+              <a href="{ url 'parent_attendance_records' child.id %}" class="btn btn-sm btn-outline-success mt-2">Details</a>
             </div>
+          </div>
 
-            <!-- Attendance, Grades, Timetable Overview -->
-            <div class="col-lg-8">
-                <div class="row gy-4">
-                    <div class="col-md-4">
-                        <div class="p-3 border rounded bg-light text-center shadow-sm">
-                            <h6>Attendance</h6>
-                            <p class="fs-4 fw-bold text-success">{{ child.attendance_percentage }}%</p>
-                            <a href="{ url 'parent_attendance_records' child.id %}" class="small">View Details</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 border rounded bg-light text-center shadow-sm">
-                            <h6>Average Grade</h6>
-                            <p class="fs-4 fw-bold text-primary">{{ child.average_grade }}%</p>
-                            <a href="{ url 'parent_grades_reports' child.id %}" class="small">View Grades</a>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="p-3 border rounded bg-light text-center shadow-sm">
-                            <h6>Today's Classes</h6>
-                            {% if today_classes %}
-                                <ul class="list-unstyled mb-0">
-                                    {% for class in today_classes %}
-                                        <li>{{ class.subject }} ({{ class.time }})</li>
-                                    {% endfor %}
-                                </ul>
-                            {% else %}
-                                <p class="text-muted">No classes today</p>
-                            {% endif %}
-                            <a href="{ url 'parent_timetable' child.id %}" class="small">View Full Timetable</a>
-                        </div>
-                    </div>
-                </div>
+          <!-- Grades -->
+          <div class="col-md-4">
+            <div class="widget-card p-4 rounded bg-white shadow-sm text-center h-100 border-start border-primary border-4">
+              <h6 class="text-muted">Average Grade</h6>
+              <div class="fs-3 fw-bold text-primary">{{ child.average_grade }}%</div>
+              <a href="{ url 'parent_grades_reports' child.id %}" class="btn btn-sm btn-outline-primary mt-2">Grades</a>
             </div>
+          </div>
 
-        </div><!-- End Row -->
-
+          <!-- Timetable -->
+          <div class="col-md-4">
+            <div class="widget-card p-4 rounded bg-white shadow-sm text-center h-100 border-start border-warning border-4">
+              <h6 class="text-muted">Today’s Classes</h6>
+              {% if today_classes %}
+                <ul class="list-unstyled small mb-2">
+                  {% for class in today_classes %}
+                    <li>{{ class.subject }} <span class="text-muted">({{ class.time }})</span></li>
+                  {% endfor %}
+                </ul>
+              {% else %}
+                <p class="text-muted">No classes today</p>
+              {% endif %}
+              <a href="{ url 'parent_timetable' child.id %}" class="btn btn-sm btn-outline-warning mt-2">Timetable</a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </section>
 {% endblock %}

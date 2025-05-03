@@ -1,204 +1,728 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang='en'>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>{% block title %} Base | AbrayTech {% endblock %}</title>
-    <meta content="" name="description">
-    <meta content="" name="keywords">
+    <meta charset="UTF-8">
+    <title>{% block title %}AbrayTech{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Favicons -->
-    <!-- <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
-    <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon"> -->
-
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
+    <!-- Bootstrap & Icons -->
     <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-    {% comment %} <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet"> {% endcomment %}
-    <link href="{% static 'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+    <!-- Added modern fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Added AOS for animations -->
+    <!-- <link href="{% static 'assets/vendor/aos/aos.css' %}" rel="stylesheet"> -->
+    <style>
+        :root {
+            --primary: #4776E6;
+            --primary-gradient: linear-gradient(135deg, #4776E6 0%, #8E54E9 100%);
+            --secondary: #FF7676;
+            --dark: #222639;
+            --light: #f8f9fa;
+            --sidebar-width: 280px;
+            --sidebar-collapsed-width: 80px;
+        }
 
-    <!-- Main CSS File -->
-    <link href="{% static 'assets/css/main.css' %}" rel="stylesheet">
-    <link href="{% static 'assets/css/style1.css' %}" rel="stylesheet">
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f5f7ff;
+            overflow-x: hidden;
+            margin: 0;
+        }
+
+        /* Sidebar */
+        #sidebar {
+            background: var(--primary-gradient);
+            width: var(--sidebar-width);
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            transition: width 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        #sidebar .sidebar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            width: 100%;
+            text-align: center;
+            background: linear-gradient(to right, #fff, #e0e7ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+
+        .logo-text {
+            display: inline;
+        }
+
+        #sidebar.collapsed .logo-text {
+            display: none;
+        }
+
+        #sidebar.collapsed .logo::before {
+            content: "A";
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        /* Nav sections */
+        .nav-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.6);
+            padding: 10px 20px;
+        }
+
+        .sidebar-divider {
+            height: 1px;
+            margin: 10px 20px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Nav links */
+        #sidebar .nav-link {
+            display: flex;
+            align-items: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+            padding: 12px 20px;
+            margin: 4px 10px;
+            border-radius: 12px;
+            position: relative;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        #sidebar .nav-link i {
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+
+        #sidebar .nav-link span {
+            flex-grow: 1;
+        }
+
+        #sidebar .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: #fff;
+        }
+
+        #sidebar .nav-link.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Notification Badge */
+        .notification-badge {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            height: 18px;
+            width: 18px;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+            z-index: 2;
+        }
+
+        /* Sidebar Collapsed */
+        #sidebar.collapsed {
+            width: var(--sidebar-collapsed-width);
+        }
+
+        #sidebar.collapsed .nav-label,
+        #sidebar.collapsed .sidebar-divider,
+        #sidebar.collapsed .nav-link span,
+        #sidebar.collapsed .sidebar-footer {
+            display: none !important;
+        }
+
+        #sidebar.collapsed .nav-link {
+            justify-content: center;
+            padding: 12px 0;
+            text-align: center;
+        }
+
+        #sidebar.collapsed .nav-link i {
+            margin: 0;
+        }
+
+        #sidebar.collapsed .nav-link .notification-badge {
+            display: flex !important;
+            right: 6px;
+            top: 6px;
+        }
+
+        /* Sidebar Footer */
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* Page Content */
+        #page-content-wrapper {
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            transition: all 0.3s ease;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #sidebar.collapsed~#page-content-wrapper {
+            margin-left: var(--sidebar-collapsed-width);
+            width: calc(100% - var(--sidebar-collapsed-width));
+        }
+
+        /* Top Navbar */
+        .top-navbar {
+            background: #fff;
+            height: 70px;
+            padding: 0 25px;
+            box-shadow: 0 1px 15px rgba(0, 0, 0, 0.04);
+        }
+
+        .top-navbar .container-fluid {
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .top-navbar .form-control {
+            height: 45px;
+        }
+
+        .navbar-search {
+            width: 100%;
+            max-width: 300px;
+            position: relative;
+        }
+
+        .navbar-search i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+
+        .navbar-search .form-control {
+            border-radius: 50px;
+            padding-left: 40px;
+            background: #f5f5f5;
+            border: none;
+            width: 100%;
+        }
+
+        .navbar-search .form-control:focus {
+            background: #fff;
+            box-shadow: 0 0 25px rgba(71, 118, 230, 0.1);
+        }
+
+        /* Profile Avatar */
+        .profile-dropdown .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 25px;
+            background-color: #f5f7ff;
+        }
+
+        /* Cards */
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            padding: 20px;
+        }
+
+        /* Buttons */
+        .btn {
+            border-radius: 50px;
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 5px 15px rgba(71, 118, 230, 0.4);
+        }
+
+        .btn-outline-primary {
+            color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-gradient);
+            border-color: transparent;
+        }
+
+        /* Feature Icons */
+        .feature-icon {
+            height: 65px;
+            width: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 10px 20px rgba(71, 118, 230, 0.3);
+        }
+
+        .feature-icon:hover {
+            transform: rotate(10deg);
+        }
+
+        .footer-section {
+            background: var(--dark);
+            color: #fff;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #fff;
+        }
+
+        .footer-section h6,
+        .footer-section h4 {
+            font-weight: 600;
+        }
+
+        .footer-section .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-size: 18px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .footer-section .social-icons a:hover {
+            background: var(--primary);
+            color: #fff;
+            transform: translateY(-3px) scale(1.1);
+        }
+
+
+        /* Responsive */
+        @media (max-width: 991.98px) {
+            #sidebar {
+                transform: translateX(-100%);
+                width: var(--sidebar-width);
+            }
+
+            #sidebar.show {
+                transform: translateX(0);
+            }
+
+            #sidebar.collapsed {
+                width: var(--sidebar-collapsed-width);
+                transform: translateX(0);
+            }
+
+            #page-content-wrapper {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .navbar-search {
+                width: 100%;
+                max-width: 200px;
+            }
+
+            #sidebar.collapsed .notification-badge {
+                display: flex !important;
+            }
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1a1;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 118, 118, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 118, 118, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 118, 118, 0);
+            }
+        }
+    </style>
 </head>
 
+<body>
 
-<!-- Body and menu started-->
+    <div class="d-flex" id="wrapper">
 
-<body class="courses-page">
-
-    <header id="header" class="header d-flex align-items-center fixed-top">
-        <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
-            <a href="{% url 'home' %}" class="logo d-flex align-items-center me-auto">
-                <h1 class="sitename">Abraytech</h1>
-            </a>
-            
-            <nav id="navmenu" class="navmenu">
-                <ul>
-                    <li><a href="{% url 'parent_dashboard' %}"><i class="bi bi-house-door"></i> Dashboard</a></li>
-                    <li><a href="{% url 'p_profile' %}"><i class="bi bi-person"></i> My Profile</a></li>
-                    <li><a href="{% url 'child_profile' %}"><i class="bi bi-people"></i> Child Profile</a></li>
-                    <li><a href="{% url 'classwork' %}"><i class="bi bi-journal-bookmark"></i> Classwork</a></li>
-                    <li class="dropdown">
-                        <a href="#"><span><i class="bi bi-clipboard-data"></i> Reports</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="{% url 'school_calendar' %}"><i class="bi bi-calendar3"></i> School Calendar</a></li>
-                            <li><a href="{% url 'grades_report' %}"><i class="bi bi-bar-chart-line"></i> Grades Report</a></li>
-                            <li><a href="{% url 'child_attendance' %}"><i class="bi bi-check2-circle"></i> Attendance</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#"><span><i class="bi bi-chat-text"></i> Communications</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-                        <ul>
-                            <li><a href="{% url 'chat' %}"><i class="bi bi-chat-dots"></i> Message</a></li>
-                            <li><a href="{% url 'announcements' %}"><i class="bi bi-megaphone"></i> Announcements</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="{% url 'payment' %}"><i class="bi bi-cash-coin"></i> Payment</a></li>
-                </ul>
-                <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-            </nav>
-            
-                  
-        
-                <a class="btn-getstarted d-none d-md-inline-block" href="{% url 'register' %}">Get Started</a>
-        </div>
-    </header>
-
-    <main class="main">
-        {% block content %}
-
-        {% endblock %}
-    </main>
-
-    <footer id="footer" class="footer">
-        <!-- Newsletter Section -->
-        <div class="footer-newsletter" data-aos="fade-right">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-6">
-                        <h4>Join Our Newsletter</h4>
-                        <p>Stay updated with the latest trends and courses!</p>
-                        <form action="forms/newsletter.php" method="post" class="php-email-form">
-                            <div class="newsletter-form">
-                                <input type="email" name="email" placeholder="Enter your email" style="background: none;">
-                                <input type="submit" value="Subscribe">
-                            </div>
-                            <div class="loading">Loading...</div>
-                            <div class="error-message"></div>
-                            <div class="sent-message">Your subscription request has been sent. Thank you!</div>
-                        </form>
-                    </div>
-                </div>
+        <!-- Sidebar -->
+        <nav id="sidebar">
+            <div class="sidebar-header d-flex justify-content-between align-items-center">
+                <a href="{% url 'parent_dashboard' %}"
+                    class="logo text-decoration-none d-flex align-items-center justify-content-center w-100">
+                    <!-- Optional image logo -->
+                    <!-- <img src="{% static 'path/to/logo.png' %}" alt="Logo" class="sidebar-logo"> -->
+                    <span class="logo-text">AbrayTech</span>
+                </a>
+                <button class="btn text-white d-lg-none" id="closeSidebar">
+                    <i class="bi bi-x-lg"></i>
+                </button>
             </div>
-        </div>
-        <!-- End Newsletter Section -->
 
-        <!-- Map Section -->
-        <div class="map-section">
-            <iframe style="border:0; width: 100%; height: 400px;"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31624.343123103754!2d4.5293167961724565!3d7.785277561167428!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103787e985029d8d%3A0x4c6c680f23c89ce2!2sNew%20orisunbare%20shopping%20complex!5e0!3m2!1sen!2sng!4v1641426080502!5m2!1sen!2sng"
-                frameborder="0" allowfullscreen></iframe>
-        </div>
-        <!-- End Map Section -->
-
-        <!-- Footer Top Section -->
-        <div class="container footer-top">
-            <div class="row gy-4">
-                <div class="col-lg-4 col-md-6 footer-about">
-                    <a href="index.html" class="d-flex align-items-center">
-                        <span class="sitename">Abraytech</span>
+            <div class="nav-label mt-3">Main Navigation</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'parent_dashboard' %}">
+                        <i class="bi bi-speedometer2"></i>
+                        <span>Dashboard</span>
                     </a>
-                    <div class="footer-contact pt-3">
-                        <h3>Contact Information</h3>
-                        <p>
-                            Abraytech Office<br>
-                            123 Tech Lane<br>
-                            City, State<br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@abraytech.com<br>
-                        </p>
-                    </div>
-                </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'p_profile' %}">
+                        <i class="bi bi-person-badge"></i>
+                        <span>My Profile</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'child_profile' %}">
+                        <i class="bi bi-people-fill"></i>
+                        <span>Child Profile</span>
+                    </a>
+                </li>
+            </ul>
 
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#about">About Us</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#courses">Courses</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#admissions">Admissions</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#events">Events</a></li>
+            <div class="sidebar-divider"></div>
+            <div class="nav-label">Academic</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'classwork' %}">
+                        <i class="bi bi-journal-richtext"></i>
+                        <span>Classwork</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'school_calendar' %}">
+                        <i class="bi bi-calendar-event"></i>
+                        <span>Calendar</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'grades_report' %}">
+                        <i class="bi bi-graph-up"></i>
+                        <span>Grades</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'child_attendance' %}">
+                        <i class="bi bi-clipboard-check"></i>
+                        <span>Attendance</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-divider"></div>
+            <div class="nav-label">Communication</div>
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'chat' %}">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span>Messages</span>
+                        <span class="notification-badge pulse">3</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'announcements' %}">
+                        <i class="bi bi-megaphone"></i>
+                        <span>Announcements</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'payment' %}">
+                        <i class="bi bi-credit-card-2-front"></i>
+                        <span>Payment</span>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="sidebar-footer text-center">
+                <small>v2.5.0 AbrayTech Education Suite</small>
+            </div>
+        </nav>
+
+
+        <!-- Main Content Wrapper -->
+        <div id="page-content-wrapper">
+
+            <!-- Top Navbar -->
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm top-navbar">
+                <div class="container-fluid d-flex align-items-center justify-content-between gap-3 px-3">
+                    <!-- Sidebar Toggle -->
+                    <button class="btn text-primary border-0 shadow-none p-0 me-2" id="toggleSidebar">
+                        <i class="bi bi-list fs-4"></i>
+                    </button>
+
+                    <!-- Search Bar -->
+                    <form class="flex-grow-1 mx-2 d-none d-md-block position-relative">
+                        <i class="bi bi-search position-absolute top-50 translate-middle-y ms-3 text-muted"></i>
+                        <input type="text" class="form-control ps-5 rounded-pill bg-light border-0"
+                            placeholder="Search..." style="max-width: 100%;">
+                    </form>
+
+                    <!-- Notifications and Profile -->
+                    <ul class="navbar-nav align-items-center flex-shrink-0 ms-auto">
+                        <!-- Notifications -->
+                        <li class="nav-item dropdown me-3 position-relative">
+                            <a class="nav-link" href="#" id="notificationsDropdown" data-bs-toggle="dropdown">
+                                <i class="bi bi-bell fs-5"></i>
+                                <span class="notification-badge">5</span>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 p-2"
+                                style="min-width: 300px;">
+                                <h6 class="dropdown-header bg-light fw-semibold">Notifications</h6>
+                                <!-- Example item -->
+                                <a href="#" class="dropdown-item py-2 d-flex align-items-start">
+                                    <div class="bg-primary text-white rounded-circle p-2 me-2">
+                                        <i class="bi bi-calendar-check"></i>
+                                    </div>
+                                    <div>
+                                        <div class="fw-semibold">Science Project Due</div>
+                                        <small class="text-muted">Today at 11:59 PM</small>
+                                    </div>
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a href="#" class="dropdown-item text-center small">View all notifications</a>
+                            </div>
+                        </li>
+
+                        <!-- User Profile -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown"
+                                data-bs-toggle="dropdown">
+                                <img src="/api/placeholder/40/40" class="rounded-circle border border-primary"
+                                    alt="User" width="40" height="40">
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3"
+                                style="min-width: 220px;">
+                                <li class="px-3 py-2">
+                                    <div class="d-flex align-items-center">
+                                        <img src="/api/placeholder/50/50" class="rounded-circle me-2" width="50"
+                                            height="50" alt="User">
+                                        <div>
+                                            <h6 class="mb-0">Alex Johnson</h6>
+                                            <small class="text-muted">Parent</small>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'p_profile' %}"><i class="bi bi-person me-2"></i> My Profile</a>
+                                </li>
+                                <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i> Settings</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item text-danger" href="#"><i
+                                            class="bi bi-box-arrow-right me-2"></i> Sign Out</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
+            </nav>
 
-                <div class="col-lg-2 col-md-3 footer-links">
-                    <h4>Our Services</h4>
-                    <ul>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#teachers">Teacher Portal</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#students">Student Portal</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#curriculum">Curriculum</a></li>
-                        <li><i class="bi bi-chevron-right"></i> <a href="#contact">Contact Us</a></li>
-                    </ul>
-                </div>
+            <!-- Dynamic Content -->
+            <main data-aos="fade-up">
+                {% block content %}
 
-                <div class="col-lg-4 col-md-12">
-                    <h4>Follow Us</h4>
-                    <p>Stay connected with us on social media for updates and news.</p>
-                    <div class="social-links d-flex">
-                        <a href=""><i class="bi bi-twitter"></i></a>
-                        <a href=""><i class="bi bi-facebook"></i></a>
-                        <a href=""><i class="bi bi-instagram"></i></a>
-                        <a href=""><i class="bi bi-linkedin"></i></a>
+                {% endblock %}
+            </main>
+
+            <!-- 🌙 Modern Footer -->
+            <footer class="footer-section py-5 bg-dark text-white">
+                <div class="container">
+                    <div class="row gy-5">
+                        <!-- Brand and Social -->
+                        <div class="col-lg-4">
+                            <h4 class="fw-bold text-white mb-3">AbrayTech</h4>
+                            <p class="text-white-50">
+                                Empowering education through innovative technology that connects parents, students, and
+                                educators.
+                            </p>
+                            <div class="social-icons mt-4">
+                                <a href="#"><i class="bi bi-twitter"></i></a>
+                                <a href="#"><i class="bi bi-facebook"></i></a>
+                                <a href="#"><i class="bi bi-instagram"></i></a>
+                                <a href="#"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div class="col-lg-2 col-md-6">
+                            <h6 class="fw-semibold text-white mb-3">Quick Links</h6>
+                            <ul class="list-unstyled text-white-50">
+                                <li class="mb-2"><a href="#">Home</a></li>
+                                <li class="mb-2"><a href="#">About Us</a></li>
+                                <li class="mb-2"><a href="#">Features</a></li>
+                                <li class="mb-2"><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Resources -->
+                        <div class="col-lg-2 col-md-6">
+                            <h6 class="fw-semibold text-white mb-3">Resources</h6>
+                            <ul class="list-unstyled text-white-50">
+                                <li class="mb-2"><a href="#">Help Center</a></li>
+                                <li class="mb-2"><a href="#">Privacy Policy</a></li>
+                                <li class="mb-2"><a href="#">Terms of Service</a></li>
+                                <li class="mb-2"><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+
+                        <!-- Newsletter -->
+                        <div class="col-lg-4">
+                            <h6 class="fw-semibold text-white mb-3">Join Our Newsletter</h6>
+                            <p class="text-white-50">Subscribe to receive the latest updates and features.</p>
+                            <form class="mt-3">
+                                <div class="input-group">
+                                    <input type="email" class="form-control rounded-start-pill bg-light border-0 px-3"
+                                        placeholder="Enter your email">
+                                    <button class="btn btn-primary rounded-end-pill px-4"
+                                        type="submit">Subscribe</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 border-light-subtle">
+
+                    <div class="text-center text-white-50 small">
+                        &copy; 2025 AbrayTech. All rights reserved.
                     </div>
                 </div>
+            </footer>
 
-            </div>
         </div>
-        <!-- End Footer Top Section -->
+    </div>
 
-        <!-- Copyright Section -->
-        <div class="container copyright text-center mt-0">
-            <p>
-                &copy;<span>Copyright</span> <strong class="px-1 sitename">Abraytech</strong> <span>
-                    All Rights
-                    Reserved
-                </span>
-            </p>
-            <div class="credits">
-                Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-        </div>
-
-    </footer>
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center">
-        <i class="bi bi-arrow-up-short"></i>
-    </a>
-
-    <!-- Preloader -->
-    {% comment %} <div id="preloader"></div> {% endcomment %}
-
-    <!-- Vendor JS Files -->
+    <!-- JS -->
     <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-    {% comment %} <script src="{% static 'assets/vendor/aos/aos.js' %}"></script> {% endcomment %}
-    <script src="{% static 'assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/waypoints/noframework.waypoints.js' %}"></script>
-    <script src="{% static 'assets/vendor/imagesloaded/imagesloaded.pkgd.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const toggleBtn = document.getElementById('toggleSidebar');
+        const closeSidebarBtn = document.getElementById('closeSidebar');
 
-    <!-- Main JS File -->
-    <script src="{% static 'assets/js/main.js' %}"></script>
+        let isCollapsed = false;
 
-    </html>
+        toggleBtn?.addEventListener('click', () => {
+            isCollapsed = !isCollapsed;
+            sidebar.classList.toggle('collapsed');
+        });
+
+        closeSidebarBtn?.addEventListener('click', () => {
+            sidebar.classList.remove('collapsed');
+            isCollapsed = false;
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth < 992) {
+                sidebar.classList.add('collapsed');
+                isCollapsed = true;
+            } else if (!isCollapsed) {
+                sidebar.classList.remove('collapsed');
+            }
+        });
+
+        // Initialize on load
+        window.dispatchEvent(new Event('resize'));
+    </script>
+
+</body>
+
+</html>

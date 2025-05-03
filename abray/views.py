@@ -9,10 +9,14 @@ def home(request):
     return render(request, 'home.html')
 
 def course(request):
-    return render(request, 'courses.html')
+    course = Course.objects.all()
+    context = {'course' : course}
+    return render(request, 'courses.html', context)
 
-def course_details(request):
-    return render(request, 'courses-details.html')
+def course_details(request, id):
+    course = Course.objects.get(id = id)
+    context = {'course' : course}
+    return render(request, 'courses-details.html', context)
 
 def course_upload(request):
     return render(request, 'course-upload.html')
@@ -29,33 +33,24 @@ def register(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
-        course_name = request.POST.get('course')
-        country_name = request.POST.get('country')
+        country = request.POST.get('country')
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
 
         # Validate form data
-        if not all([first_name, last_name, email, course_name, country_name, password, confirm_password]):
-            messages.error(request, "All fields are required")
+        if not all([first_name, last_name, email, password, confirm_password]):
+            messages.error(request, "All fields are required.")
             return redirect('register')
 
         if password != confirm_password:
-            messages.error(request, "Passwords do not match")
+            messages.error(request, "Passwords do not match.")
             return redirect('register')
 
         if User.objects.filter(email=email).exists():
-            messages.error(request, "Email already exists")
+            messages.error(request, "Email already exists.")
             return redirect('register')
 
         try:
-            # Get or create course and country
-            course_obj, _ = Course.objects.get_or_create(
-                name=course_name,
-                defaults={'description': f'Course for {course_name}', 'price': 0.00}
-            )
-            country_obj, _ = Country.objects.get_or_create(name=country_name)
-
-            # Create user
             username = email  # Using email as username
             user = User.objects.create_user(
                 username=username,
@@ -65,12 +60,9 @@ def register(request):
                 last_name=last_name
             )
 
-            # Create profile
-            Profile.objects.create(
-                user=user,
-                course=course_obj,
-                country=country_obj
-            )
+            # Create empty profile, will be updated later with course/country
+            Country.objects.create(country = country)
+            Profile.objects.create(user=user, country = country)
 
             messages.success(request, "Registration successful. Please login.")
             return redirect('login')
@@ -78,8 +70,9 @@ def register(request):
         except Exception as e:
             messages.error(request, f"An error occurred: {str(e)}")
             return redirect('register')
-    
+
     return render(request, 'signup.html')
+
 
 def login(request):
     if request.user.is_authenticated:

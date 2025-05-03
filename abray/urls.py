@@ -1,10 +1,12 @@
-from django.urls import path
 from . import views
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('course', views.course, name='course'),
-    path('detail', views.course_details, name="course_detail"),
+    path('detail/<int:id>', views.course_details, name="course_detail"),
     path('course_upload', views.course_upload, name="course_upload"),
 
     path('s/home', views.user_dashboard, name="user_dashboard"),
@@ -15,6 +17,7 @@ urlpatterns = [
     path('s/grade', views.grade_reports, name="grades"),
     path('s/attendance', views.attendance, name="attendance"),
 
+    # Teacher Urls
     path('t/home', views.teacher_dashboard, name="teacher_dashboard"),
     path('t/profile', views.t_profile, name="t_profile"),
     path('t/classes', views.myclasses, name="my_classes"),
@@ -25,6 +28,7 @@ urlpatterns = [
     path('t/message', views.messaging, name="messaging"),
     path('t/course_resources', views.course_resource, name="course_resource"),
 
+    # Parent Urls
     path('p/home', views.parent_dashboard, name="parent_dashboard"),
     path('p/profile', views.p_profile, name="p_profile"),
     path('p/child_profile', views.child_profile, name="child_profile"),
@@ -36,6 +40,7 @@ urlpatterns = [
     path('p/payment', views.payment, name="payment"),
     path('p/notice', views.announcements, name="announcements"),
 
+    # Admin Urls
     path('a/home', views.admin_dashboard, name="admin_dashboard"),
     path('a/users', views.manage_users, name="manage_users"),
     path('a/course', views.courses, name="courses_classes"),
@@ -53,4 +58,4 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('password_reset', views.password_reset, name='password_reset'),
     path('events', views.events, name='events')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
