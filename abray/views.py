@@ -36,6 +36,11 @@ def course(request):
 def course_detail(request, slug):
     """View to display a single course with all its details"""
     course = get_object_or_404(Course, slug=slug, is_active=True)
+
+
+
+def buy(request):
+    return render(request, 'enrolment.html')
     
     # Get course modules and their lessons
     modules = CourseModule.objects.filter(course=course).prefetch_related('lessons')
@@ -224,6 +229,7 @@ def timetable(request):
 
 def mycourse(request):
     return render(request, 'student/courses.html')
+
 
 def assignments(request):
     return render(request, 'student/assignments.html')
