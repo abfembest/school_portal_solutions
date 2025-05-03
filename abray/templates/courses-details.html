@@ -11,8 +11,8 @@
     <div class="container">
         <nav style="--bs-breadcrumb-divider: '›';" aria-label="breadcrumb">
             <ol class="breadcrumb mb-0">
-                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                <li class="breadcrumb-item"><a href="courses.html">Courses</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'course' %}">Courses</a></li>
                 <li class="breadcrumb-item active" aria-current="page">{{course.title}}</li>
             </ol>
         </nav>
@@ -548,8 +548,8 @@
 
                         <div class="d-grid gap-2 mb-4">
                             <button class="btn btn-primary btn-lg">Enroll Now</button>
-                            <button class="btn btn-outline-primary">Add to Wishlist <i
-                                    class="bi bi-heart ms-1"></i></button>
+                            <button class="btn btn-outline-primary">Add to Cart<i
+                                    class="bi bi-cart ms-1"></i></button>
                         </div>
 
                         <div class="course-includes mb-4">
