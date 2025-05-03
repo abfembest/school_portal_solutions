@@ -1,10 +1,12 @@
-from django.urls import path
 from . import views
+from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('course', views.course, name='course'),
-    path('detail', views.course_details, name="course_detail"),
+    path('detail/<int:id>', views.course_details, name="course_detail"),
     path('course_upload', views.course_upload, name="course_upload"),
 
     path('s/home', views.user_dashboard, name="user_dashboard"),
@@ -56,4 +58,4 @@ urlpatterns = [
     path('logout', views.logout, name='logout'),
     path('password_reset', views.password_reset, name='password_reset'),
     path('events', views.events, name='events')
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

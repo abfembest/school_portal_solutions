@@ -47,12 +47,13 @@
         <div class="swiper coursesSwiper">
             <div class="swiper-wrapper pb-5">
 
+                {% for i in course %}
                 <!-- AI Course Card -->
                 <div class="swiper-slide">
                     <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
                         <div class="position-relative course-img-container">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995" class="card-img-top"
-                                alt="Artificial Intelligence" style="height: 300px; object-fit: cover;">
+                            <img src="{{ i.image.url }}" class="card-img-top"
+                                alt="{{ i.title }}" style="height: 300px; object-fit: cover;">
                             <div class="position-absolute top-0 end-0 p-3">
                                 <span
                                     class="badge bg-danger animate__animated animate__pulse animate__infinite">Popular</span>
@@ -71,9 +72,8 @@
                                 </div>
                             </div>
                             <h5 class="card-title fw-bold">
-                                <a href="{% url 'course_detail' %}" class="stretched-link text-decoration-none text-dark">
-                                    Artificial
-                                    Intelligence
+                                <a href="{% url 'course_detail' i.id  %}" class="stretched-link text-decoration-none text-dark">
+                                    {{i.title}}
                                 </a>
                             </h5>
                             <div class="rating mb-3">
@@ -85,16 +85,14 @@
                                 <small class="ms-2 text-muted">(4.5)</small>
                             </div>
                             <p class="card-text small">
-                                Learn the fundamentals of AI and machine learning to
-                                build
-                                intelligent systems.
+                                {{i.description}}
                             </p>
                         </div>
                         <div class="card-footer bg-transparent border-top-0 text-center p-3 p-lg-4">
                             <div
                                 class="d-flex justify-content-between align-items-center flex-column flex-sm-row gap-2">
-                                <span class="fw-bold text-primary">$199.99</span>
-                                <a href="{% url 'course_detail' %}" class="btn btn-primary rounded-pill px-3 px-md-4"
+                                <span class="fw-bold text-primary">${{i.price}}</span>
+                                <a href="{% url 'course_detail' i.id %}" class="btn btn-primary rounded-pill px-3 px-md-4"
                                     data-aos="fade-up">
                                     <i class="bi bi-person-plus-fill me-1 me-md-2"></i><span
                                         class="d-none d-sm-inline">Join Course</span><span
@@ -104,8 +102,9 @@
                         </div>
                     </div>
                 </div>
+                {% endfor %}
 
-                <!-- Cyber Security Card -->
+                {% comment %} Cyber Security Card
                 <div class="swiper-slide">
                     <div class="card border-0 rounded-4 shadow overflow-hidden h-100 animate__animated animate__fadeIn">
                         <div class="position-relative course-img-container">
@@ -422,7 +421,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> {% endcomment %}
             </div>
 
             <!-- Swiper Navigation -->
