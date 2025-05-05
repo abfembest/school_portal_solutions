@@ -222,6 +222,10 @@ def logout(request):
 def password_reset(request):
     return 'Hi'
 
+def cart(request):
+    course = Course.objects.all()
+    return render(request, 'cart.html',{"course" : course})
+
 #Student Views
 def user_dashboard(request):
     return render(request, 'student/user_dashboard.html')

@@ -58,5 +58,6 @@ urlpatterns = [
     path('login', views.login, name='login'),
     path('logout', views.logout, name='logout'),
     path('password_reset', views.password_reset, name='password_reset'),
-    path('events', views.events, name='events')
+    path('events', views.events, name='events'),
+    path('cart', views.cart, name="cart")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
