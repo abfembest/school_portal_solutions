@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 from .models import Profile, Course, Country, CourseModule, Lesson, Instructor, Review, Category, Wishlist, CourseResource
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+import json
+from .models import Order, OrderItem
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 def home(request):
@@ -341,3 +348,129 @@ def finance_fees(request):
 
 def document_management(request):
     return render(request, 'school_admin/document_management.html')
+
+@require_POST
+@csrf_exempt  # In production, handle CSRF properly
+def place_order(request):
+    try:
+        # Parse the JSON request body
+        data = json.loads(request.body)
+        
+        # Extract order details
+        shipping_info = data.get('shippingInfo', {})
+        cart_items = data.get('cartItems', [])
+        payment_info = data.get('paymentInfo', {})
+        
+        if not cart_items:
+            return JsonResponse({'success': False, 'error': 'Cart is empty'}, status=400)
+        
+        # Get email from shipping info
+        email = shipping_info.get('email', '')
+        if not email:
+            return JsonResponse({'success': False, 'error': 'Email is required'}, status=400)
+            
+        # Calculate total amount
+        total_amount = sum(float(item.get('price', 0)) * int(item.get('quantity', 1)) for item in cart_items)
+        
+        # Check if user already exists
+        user = None
+        user_created = False
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            # Create new user with random password (will be reset later)
+            import uuid
+            temp_password = str(uuid.uuid4())
+            username = email  # Using email as username
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=temp_password,
+                first_name=shipping_info.get('name', '').split(' ')[0],
+                last_name=' '.join(shipping_info.get('name', '').split(' ')[1:]) if len(shipping_info.get('name', '').split(' ')) > 1 else ''
+            )
+            
+            # Create user profile
+            country_name = shipping_info.get('city', 'Unknown')
+            country, created = Country.objects.get_or_create(name=country_name)
+            Profile.objects.create(user=user, country=country)
+            user_created = True
+        
+        # Create the order
+        order = Order.objects.create(
+            user=user,
+            full_name=shipping_info.get('name', ''),
+            email=email,
+            address=shipping_info.get('address', ''),
+            city=shipping_info.get('city', ''),
+            zip_code=shipping_info.get('zip', ''),
+            total_amount=total_amount,
+            status='paid'  # Assuming payment is successful
+        )
+        
+        # Create order items
+        for item in cart_items:
+            course_id = item.get('id')
+            quantity = int(item.get('quantity', 1))
+            price = float(item.get('price', 0))
+            
+            try:
+                course = Course.objects.get(id=course_id)
+                OrderItem.objects.create(
+                    order=order,
+                    course=course,
+                    price=price,
+                    quantity=quantity
+                )
+                
+                # Automatically enroll the user in the course
+                # Assuming you have a method or model for this
+                # For example, if Profile has an enrolled_courses field:
+                user_profile = Profile.objects.get(user=user)
+                if hasattr(user_profile, 'enrolled_courses'):
+                    user_profile.enrolled_courses.add(course)
+                
+            except Course.DoesNotExist:
+                # Log this error but continue processing other items
+                pass
+        
+        # Return appropriate response with login information if new user
+        response_data = {
+            'success': True,
+            'order_id': order.id,
+            'message': 'Order placed successfully!'
+        }
+        
+        if user_created:
+            # Include information that this is a new account
+            response_data.update({
+                'user_created': True,
+                'email': email,
+                'reset_password_required': True,
+                'message': 'Account created and order placed successfully! Please check your email to set your password.'
+            })
+            
+            # Send password reset email (implementation depends on your setup)
+            # send_password_reset_email(user)
+        else:
+            response_data.update({
+                'user_exists': True
+            })
+            
+        return JsonResponse(response_data)
+        
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON'}, status=400)
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+@login_required
+def order_history(request):
+    """View to display user's order history"""
+    orders = Order.objects.filter(user=request.user).prefetch_related('items')
+    
+    context = {
+        'orders': orders
+    }
+    
+    return render(request, 'student/order_history.html', context)

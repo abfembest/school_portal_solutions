@@ -60,4 +60,7 @@ urlpatterns = [
     path('password_reset', views.password_reset, name='password_reset'),
     path('events', views.events, name='events'),
     path('cart/', views.cart, name="cart"),
+
+    path('place-order/', views.place_order, name='place_order'),
+    path('order-history/', views.order_history, name='order_history'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
