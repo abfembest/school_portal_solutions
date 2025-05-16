@@ -27,6 +27,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PAYSTACK_SECRET_KEY = 'sk_test_45c40747b6ab75ab5545a18687ad366d86445ee1'
+PAYSTACK_PUBLIC_KEY = 'pk_test_6013acfb3794aebaafd20505f9a3f599997006f5'
+
+PAYSTACK_CURRENCY = 'NGN'
+
 
 # Application definition
 
